@@ -21,7 +21,7 @@ public class GameMain : MonoBehaviour
 
     //ComDef.GameState mGameState = ComDef.GameState.GAMESTATE_LOBBY;
 
-    public float mGameSpeed = 1f;
+    public float mGameSpeed = 2f;
 
     GameObject mUIRoot = null;
     GameObject mBattleRoot = null;
