@@ -172,7 +172,6 @@ public class Hero_Control : MonoBehaviour
         get { return mIsDie; }
     }
 
-    GameObject efc = null;
     void Start()
     {
         Transform tObj = transform.FindChild( "Obj" );
@@ -191,14 +190,6 @@ public class Hero_Control : MonoBehaviour
         if (sr != null && sr.Length > 0)
         {
             mListSR.AddRange(sr);
-        }
-
-
-        // test effect load
-        efc = Resources.Load("Effect/Hero/Hit") as GameObject;
-        if (efc == null)
-        {
-            Debug.LogError("Not Find Effect/Hero/Hit!");
         }
     }
 
@@ -589,7 +580,7 @@ public class Hero_Control : MonoBehaviour
         float amount =  (float)HP / (float)MaxHP;
         bcUI.UpdateHPGauge(mHeroUid, amount);
 
-        GameObject goEfc = GameObject.Instantiate(efc);
+        GameObject goEfc = EffectManager.Instance().GetEffect(EffectManager.eEffectType.EFFECT_BATTLE_HIT); 
         if (goEfc != null)
         {
             Transform tCen = HeroObj.transform.FindChild("ef_Center");
@@ -598,7 +589,7 @@ public class Hero_Control : MonoBehaviour
                 Battle_Control bc = GameMain.Instance().Battle_Control();
                 Transform tEffect = bc.transform.FindChild("Effect");
                 
-                goEfc.transform.parent = tEffect;
+                goEfc.transform.parent = tEffect; 
                 goEfc.transform.position = tCen.position;
                 
                 ParticleSystem [] pcs = goEfc.GetComponentsInChildren<ParticleSystem>();

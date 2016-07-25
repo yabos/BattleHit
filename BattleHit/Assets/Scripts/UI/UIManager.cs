@@ -53,9 +53,9 @@ public class UIManager : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start () 
+    public void TitleUILoad () 
     {
-        mUICameraRoot = transform.FindChild("Camera");
+        mUICameraRoot = GameObject.Find("UIRoot/Camera").transform;
         if (mUICameraRoot == null)
         {
             Debug.LogError("Not Find UICameraRoot!");

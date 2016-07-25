@@ -67,9 +67,26 @@ public class GameMain : MonoBehaviour
     {
         TBManager.Instance().LoadTableAll();
 
+        ResourcesLoad();
+
+        TitleUILoad();
+
         // Load save data.   
     }
 
+
+    void ResourcesLoad()
+    {
+        // 3d model lad
+
+        // effect load
+        EffectManager.Instance().EffectLoad();
+    }
+
+    void TitleUILoad()
+    {
+        UIManager.Instance().TitleUILoad();
+    }
 
     public void GoLobby()
     {
