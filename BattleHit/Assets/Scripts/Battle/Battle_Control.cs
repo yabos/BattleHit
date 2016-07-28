@@ -10,8 +10,8 @@ public class Battle_Control : MonoBehaviour
     List<Hero_Control> mListEnemyHeroes = new List<Hero_Control>();
     List<Hero_Control> mListSortingLayer = new List<Hero_Control>();
 
+	SpriteRenderer mLoading = null;
     int m_iLoadingState = 0;
-
 
     public List<Hero_Control> ListMyHeroes
     {
@@ -25,7 +25,7 @@ public class Battle_Control : MonoBehaviour
 
     void Start()
     {
-        
+		mLoading = GetComponent<SpriteRenderer> ();
     }
 
     void Update()
@@ -82,6 +82,12 @@ public class Battle_Control : MonoBehaviour
             case 3:
                 AggroInit();
                 break;
+
+			case 4:
+				BattleUI_Control ui = UIManager.Instance ().GetUI () as BattleUI_Control;
+				ui.ActiveLoadingIMG (false);
+				m_iLoadingState++;
+				break;
         }
     }
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LobbyUI_Control : MonoBehaviour
+public class LobbyUI_Control : BaseUI
 {
 	// Use this for initialization
 	void Start () {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TitleUI_Control : MonoBehaviour
+public class TitleUI_Control : BaseUI
 {
 	// Use this for initialization
 	void Start ()

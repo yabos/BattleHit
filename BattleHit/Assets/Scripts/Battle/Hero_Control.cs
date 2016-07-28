@@ -260,7 +260,7 @@ public class Hero_Control : MonoBehaviour
 
     void HeroDie()
     {
-        BattleUI_Control bcUI = UIManager.Instance().GetUI<BattleUI_Control>();
+		BattleUI_Control bcUI = UIManager.Instance().GetUI() as BattleUI_Control;
         if (bcUI != null)
         {
             bcUI.DestroyHPGauge(HeroUid);
@@ -574,7 +574,7 @@ public class Hero_Control : MonoBehaviour
         // if(immune) return false
 
         HP -= atthero.Atk;
-        BattleUI_Control bcUI = UIManager.Instance().GetUI<BattleUI_Control>();
+		BattleUI_Control bcUI = UIManager.Instance().GetUI() as BattleUI_Control;
         if (bcUI == null) return false;
 
         float amount =  (float)HP / (float)MaxHP;
@@ -651,7 +651,7 @@ public class Hero_Control : MonoBehaviour
     {
         if (IsDie) return;
 
-        BattleUI_Control bcUI = UIManager.Instance().GetUI<BattleUI_Control>();
+		BattleUI_Control bcUI = UIManager.Instance().GetUI() as BattleUI_Control;
         if (bcUI == null) return;
         bcUI.UpdatePosHPGauge(mHeroUid, mEf_HP);
     }

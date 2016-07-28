@@ -219,6 +219,7 @@
      <Compile Include="Assets\Scripts\Table\StringTable.cs" />
      <Compile Include="Assets\Scripts\Table\TBManager.cs" />
      <Compile Include="Assets\Scripts\Table\TB_Hero.cs" />
+     <Compile Include="Assets\Scripts\UI\BaseUI.cs" />
      <Compile Include="Assets\Scripts\UI\Battle\BattleUI_Control.cs" />
      <Compile Include="Assets\Scripts\UI\Lobby\LobbyUI_Control.cs" />
      <Compile Include="Assets\Scripts\UI\Title\TitleUI_Control.cs" />

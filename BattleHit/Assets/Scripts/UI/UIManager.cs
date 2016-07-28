@@ -134,13 +134,23 @@ public class UIManager : MonoBehaviour
         }
     }   
 
-    public T GetUI<T>()
-    {
-        if (mCurrUI == null)
+//    public T GetUI<T>()
+//    {
+//        if (mCurrUI == null)
+//        {
+//            return default(T);
+//        }
+//
+//        return mCurrUI.GetComponent<T>(); ;
+//    }    
+
+	public BaseUI GetUI()
+	{
+		if (mCurrUI == null)
         {
-            return default(T);
+			return null;
         }
 
-        return mCurrUI.GetComponent<T>(); ;
-    }    
+		return mCurrUI.GetComponent<BaseUI>();
+	}
 }

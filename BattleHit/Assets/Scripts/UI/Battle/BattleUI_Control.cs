@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BattleUI_Control : MonoBehaviour
+public class BattleUI_Control : BaseUI
 {
+	Transform mBattleLoading = null;
+
     Transform mHeroHp = null;
 
 	// Use this for initialization
@@ -10,12 +12,20 @@ public class BattleUI_Control : MonoBehaviour
     {
         mHeroHp = transform.FindChild("Anchor/HeroHP");
         if (mHeroHp == null) return;
+
+		mBattleLoading = transform.FindChild ("Anchor/Loading");
+		if (mBattleLoading == null)return;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
 	
+	}
+
+	public void ActiveLoadingIMG(bool bActive)
+	{
+		mBattleLoading.gameObject.SetActive (bActive);
 	}
 
     public void CreateHeroHp(System.Guid uid, bool bMyTeam)
