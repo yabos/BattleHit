@@ -23,9 +23,11 @@ public class GameMain : MonoBehaviour
 
     public float mGameSpeed = 2f;
 
-    GameObject mUIRoot = null;
-    GameObject mBattleRoot = null;
+    GameObject mUIRoot = null;    
     UIManager mUIManager = null;
+
+    GameObject mBattleRoot = null;
+    Battle_Control mBattleControl = null;
 
     public GameObject UIRoot
     {
@@ -37,6 +39,12 @@ public class GameMain : MonoBehaviour
     {
         set { mBattleRoot = value; }
         get { return mBattleRoot; }
+    }
+
+    public Battle_Control BattleControl
+    {
+        set { mBattleControl = value; }
+        get { return mBattleControl; }
     }
 
     void Awake()
@@ -116,19 +124,11 @@ public class GameMain : MonoBehaviour
                 mBattleRoot.transform.position = Vector3.zero;
                 mBattleRoot.transform.rotation = Quaternion.identity;
                 mBattleRoot.transform.localScale = Vector3.one;
+
+                mBattleControl = mBattleRoot.GetComponent<Battle_Control>();
             }
         }
 
         bisLoading = false;
-    }
-
-    public Battle_Control Battle_Control()
-    {
-        if (mBattleRoot == null) return null;
-
-        Battle_Control bc = mBattleRoot.GetComponent<Battle_Control>();
-        if (bc == null) return null;
-
-        return bc;
     }
 }

@@ -234,7 +234,29 @@ public class Hero_Control : MonoBehaviour
         switch ((int)mHeroState)
         {
             case (int)eHeroState.HEROSTATE_IDLE:
-                SearchTarget();
+                Battle_Control bc = GameMain.Instance().BattleControl;
+                if (bc != null)
+                {
+                    if (bc.BattleState == Battle_Control.eBattleState.eBattle_Ready)
+                    {
+                        // 전투 준비 중일 때 시작 위치로 아군이동
+                        MoveToBattleReadyPos();
+                    }
+                    else if (bc.BattleState == Battle_Control.eBattleState.eBattle_Ing)
+                    {
+                        // 피아 모두 적을 탐색
+                        SearchTarget();
+                    }
+                    else if (bc.BattleState == Battle_Control.eBattleState.eBattle_Win)
+                    {
+                        // 아군 이겼을 때 포즈 후 다음 스테이지로
+                        MoveToBattleEndPos();
+                    }
+                    else if (bc.BattleState == Battle_Control.eBattleState.eBattle_Lose)
+                    {
+                        // 적이 이겼을 때 포즈
+                    }
+                }                
                 break;
 
             case (int)eHeroState.HEROSTATE_WALK:
@@ -256,6 +278,34 @@ public class Hero_Control : MonoBehaviour
                 HeroDie();
                 break;
         }
+    }
+
+    void MoveToBattleReadyPos()
+    {
+        if (!MyTeam) return;
+
+        Transform tBattleStartTo = GameMain.Instance().BattleControl.BattleStartTo;
+        if (tBattleStartTo == null) return;
+
+        FaceTo(tBattleStartTo);
+        Vector3 vDir = tBattleStartTo.position - transform.position;
+        vDir.Normalize();
+        transform.position += vDir * Time.deltaTime * mSpeed * 2f;
+
+        mIsMove = true;
+        mActor.PlayAnimation(Actor.AnimationActor.ANI_WALK);
+
+        float dis = Vector3.Distance(transform.position, tBattleStartTo.position);
+        if (dis < 0.01f)
+        {
+            GameMain.Instance().BattleControl.BattleState = Battle_Control.eBattleState.eBattle_Ing;
+            mHeroState = eHeroState.HEROSTATE_IDLE;
+        }
+    }
+
+    void MoveToBattleEndPos()
+    {
+        if (!MyTeam) return;
     }
 
     void HeroDie()
@@ -387,7 +437,7 @@ public class Hero_Control : MonoBehaviour
 
         if (targetHero == null) return null;
 
-        Battle_Control bc = GameMain.Instance().Battle_Control();
+        Battle_Control bc = GameMain.Instance().BattleControl;
         if (bc == null) return null;
         if (MyTeam)
         {
@@ -483,9 +533,22 @@ public class Hero_Control : MonoBehaviour
         }
     }
 
+    void FaceTo(Transform targetHero)
+    {
+        Vector3 vDir = targetHero.position - transform.position;
+        if (vDir.x > 0)
+        {
+            HeroObj.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            HeroObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
     eAttPos MoveDir(Hero_Control targetHero, ref int iCount)
     {
-        Battle_Control bc = GameMain.Instance().Battle_Control();
+        Battle_Control bc = GameMain.Instance().BattleControl;
         if (bc == null) return eAttPos.ATTPOS_NONE;
 
         eAttPos eResultPos = eAttPos.ATTPOS_NONE;
@@ -586,7 +649,7 @@ public class Hero_Control : MonoBehaviour
             Transform tCen = HeroObj.transform.FindChild("ef_Center");
             if( tCen != null )
             {
-                Battle_Control bc = GameMain.Instance().Battle_Control();
+                Battle_Control bc = GameMain.Instance().BattleControl;
                 Transform tEffect = bc.transform.FindChild("Effect");
                 
                 goEfc.transform.parent = tEffect; 

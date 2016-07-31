@@ -4,7 +4,17 @@ using System.Collections.Generic;
 
 public class Battle_Control : MonoBehaviour
 {
+    public enum eBattleState
+    {
+        eBattle_Ready,
+        eBattle_Ing,
+        eBattle_Win,
+        eBattle_Lose,
+    }
+
     public static readonly string stMapLoadPath = "Map/";
+
+    eBattleState mBattleState = eBattleState.eBattle_Ready;
 
     List<Hero_Control> mListMyHeroes = new List<Hero_Control>();
     List<Hero_Control> mListEnemyHeroes = new List<Hero_Control>();
@@ -12,6 +22,15 @@ public class Battle_Control : MonoBehaviour
 
 	SpriteRenderer mLoading = null;
     int m_iLoadingState = 0;
+
+    Transform mBattleStartTo = null;
+    List<Transform> mListBattleEndPos = new List<Transform>();
+
+    public eBattleState BattleState
+    {
+        set { mBattleState = value; }
+        get { return mBattleState; }
+    }
 
     public List<Hero_Control> ListMyHeroes
     {
@@ -23,16 +42,28 @@ public class Battle_Control : MonoBehaviour
         get { return mListEnemyHeroes; }
     }
 
+    public Transform BattleStartTo
+    {
+        get { return mBattleStartTo; }
+    }
+
+    public List<Transform> ListBattleEndPos
+    {
+        get { return mListBattleEndPos; }
+    }
+
     void Start()
     {
 		mLoading = GetComponent<SpriteRenderer> ();
+
+        mBattleState = eBattleState.eBattle_Ready;
     }
 
     void Update()
     {
         LoadingProcess();
 
-        UpdateSortingLayer();
+        UpdateSortingLayer();        
     }
 
     void UpdateSortingLayer()
@@ -83,7 +114,11 @@ public class Battle_Control : MonoBehaviour
                 AggroInit();
                 break;
 
-			case 4:
+            case 4:
+                InitBattlePos();
+                break;
+
+			case 5:
 				BattleUI_Control ui = UIManager.Instance ().GetUI () as BattleUI_Control;
 				ui.ActiveLoadingIMG (false);
 				m_iLoadingState++;
@@ -118,12 +153,12 @@ public class Battle_Control : MonoBehaviour
         Transform tTeam = transform.FindChild("Team/MyTeam");
         if (tTeam != null)
         {
-            for (int i = 0; i < 3; ++i)
+            //for (int i = 0; i < 3; ++i)
             {
                 Hero_Control hero = UtilFunc.CreateHero(tTeam, 1001, 1, true);
                 if (hero != null)
                 {
-                    Transform tSPos = transform.FindChild("Map/RegenPos/MyTeam/" + i.ToString());
+                    Transform tSPos = transform.FindChild("Map/RegenPos/MyTeam/StartFrom");
                     if (tSPos != null)
                     {
                         hero.transform.position = tSPos.position;
@@ -189,6 +224,24 @@ public class Battle_Control : MonoBehaviour
             {
                 nodeEnemy.DicAggro.Add(nodeMy, 1);
             }
+        }
+
+        m_iLoadingState++;
+    }
+
+    void InitBattlePos()
+    {
+        Transform tStartTo = transform.FindChild("Map/RegenPos/MyTeam/StartTo");
+        if (tStartTo != null)
+        {
+            mBattleStartTo = tStartTo;
+        }
+
+        for (int i = 0; i < 6; ++i)
+        {
+            Transform tEndPath = transform.FindChild("Map/RegenPos/MyTeam/EndPath" + i.ToString());
+            if (tEndPath == null) continue;
+            mListBattleEndPos.Add(tEndPath);
         }
 
         m_iLoadingState++;
