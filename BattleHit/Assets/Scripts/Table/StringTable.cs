@@ -177,7 +177,7 @@ public class StringTable
 		
 		try
 		{
-			TextAsset textAsset = Resources.Load(strPath) as TextAsset;
+			TextAsset textAsset = VResources.Load<TextAsset>(strPath);
 			
 			if( textAsset == null )
 			{

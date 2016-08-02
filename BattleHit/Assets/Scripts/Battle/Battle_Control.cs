@@ -128,7 +128,7 @@ public class Battle_Control : MonoBehaviour
 
     IEnumerator CreateMap( int iMapNo )
     {
-        GameObject goMap = Resources.Load(stMapLoadPath + iMapNo.ToString()) as GameObject;
+		GameObject goMap = VResources.Load<GameObject>(stMapLoadPath + iMapNo.ToString());
         if (goMap != null)
         { 
             GameObject Map = GameObject.Instantiate( goMap ) as GameObject;

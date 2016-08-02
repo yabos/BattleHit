@@ -114,7 +114,7 @@ public class GameMain : MonoBehaviour
         bisLoading = true;
         yield return null;
 
-        GameObject goBattleRoot = Resources.Load(stBattleRootPath) as GameObject;
+		GameObject goBattleRoot = VResources.Load<GameObject>(stBattleRootPath);
         if (goBattleRoot != null)
         {
             mBattleRoot = GameObject.Instantiate(goBattleRoot);

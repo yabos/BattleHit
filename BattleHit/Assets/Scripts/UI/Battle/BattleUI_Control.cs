@@ -30,7 +30,7 @@ public class BattleUI_Control : BaseUI
 
     public void CreateHeroHp(System.Guid uid, bool bMyTeam)
     {
-        GameObject goHPRes = Resources.Load("UI/Common/Prefabs/HPGauge") as GameObject;
+		GameObject goHPRes = VResources.Load<GameObject>("UI/Common/Prefabs/HPGauge");
         if (goHPRes == null) return;
 
         GameObject goHP = GameObject.Instantiate(goHPRes) as GameObject;

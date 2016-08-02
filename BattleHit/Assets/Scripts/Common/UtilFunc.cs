@@ -30,7 +30,7 @@ public class UtilFunc
             hero.StResPath = tbHero.stResPath;
             hero.MyTeam = bMyTeam;
 
-            GameObject goRes = Resources.Load(hero.StResPath) as GameObject;
+			GameObject goRes = VResources.Load<GameObject> (hero.StResPath);
             if (goRes == null) return null;
 
             GameObject go = GameObject.Instantiate(goRes) as GameObject;
@@ -47,7 +47,7 @@ public class UtilFunc
                 hero.HeroObj = go;
             }
 
-            GameObject goAttackedRes = Resources.Load("Heroes/Prefabs/AttakedPos") as GameObject;
+			GameObject goAttackedRes = VResources.Load<GameObject> ("Heroes/Prefabs/AttakedPos");
             if (goAttackedRes == null) return null;
 
             GameObject goAttacked = GameObject.Instantiate(goAttackedRes) as GameObject;

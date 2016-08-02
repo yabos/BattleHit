@@ -1,14 +1,13 @@
 ﻿<Properties VersionControlDisabled="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/Battle_Control.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameMain/GameMain.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameMain/GameMain.cs" Line="98" Column="36" />
-      <File FileName="Assets/Scripts/Battle/Battle_Control.cs" Line="85" Column="4" />
-      <File FileName="Assets/Scripts/UI/UIManager.cs" Line="145" Column="12" />
-      <File FileName="Assets/Scripts/UI/Battle/BattleUI_Control.cs" Line="8" Column="30" />
-      <File FileName="Assets/Scripts/Battle/Hero_Control.cs" Line="654" Column="75" />
-      <File FileName="Assets/Scripts/Common/UtilFunc.cs" Line="65" Column="76" />
-      <File FileName="Assets/Scripts/Table/TB_Hero.cs" Line="14" Column="29" />
+      <File FileName="Assets/Scripts/GameMain/GameMain.cs" Line="22" Column="70" />
+      <File FileName="Assets/Scripts/UI/UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/Battle_Control.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/Battle/BattleUI_Control.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/Hero_Control.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Common/UtilFunc.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

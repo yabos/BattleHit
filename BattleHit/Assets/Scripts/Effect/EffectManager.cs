@@ -38,7 +38,7 @@ public class EffectManager : MonoBehaviour
 
     public void EffectLoad()
     {
-        GameObject efc = Resources.Load("Effect/Hero/Hit") as GameObject;
+		GameObject efc = VResources.Load<GameObject> ("Effect/Hero/Hit");
         if (efc == null)
         {
             Debug.LogError("Not Find Effect/Hero/Hit!");

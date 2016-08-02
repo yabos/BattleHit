@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         string stPath = UIPath[(int)state];
-        GameObject goUI = Resources.Load(stPath) as GameObject;
+		GameObject goUI = VResources.Load<GameObject>(stPath);
         if (goUI != null)
         {
             GameObject uiRoot = GameObject.Instantiate(goUI);

@@ -1,0 +1,13 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public static class VResources
+{
+	static Dictionary<string, Object> resourceCache = new Dictionary<string, Object>();
+	public static T Load<T>(string path) where T : Object
+	{
+		if (!resourceCache.ContainsKey(path))
+			resourceCache[path] = VResources.Load<T>(path);
+		return (T)resourceCache[path];
+	}
+}
