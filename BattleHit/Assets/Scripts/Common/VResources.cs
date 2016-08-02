@@ -7,7 +7,7 @@ public static class VResources
 	public static T Load<T>(string path) where T : Object
 	{
 		if (!resourceCache.ContainsKey(path))
-			resourceCache[path] = VResources.Load<T>(path);
+			resourceCache[path] = Resources.Load<T>(path);
 		return (T)resourceCache[path];
 	}
 }
