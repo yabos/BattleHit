@@ -45,7 +45,7 @@ public class Hero_Control : MonoBehaviour
 
     Transform mEf_HP = null;
 
-    Dictionary<Hero_Control, int> mDicAggro = new Dictionary<Hero_Control, int>();
+    //Dictionary<Hero_Control, int> mDicAggro = new Dictionary<Hero_Control, int>();
     Hero_Control mTarget = null;
     eAttPos mAttPos = eAttPos.ATTPOS_NONE;
     List<Hero_Control> mListAttPos = new List<Hero_Control>();
@@ -118,11 +118,11 @@ public class Hero_Control : MonoBehaviour
         get { return mStResPath; }
     }
 
-    public Dictionary<Hero_Control, int> DicAggro
-    {
-        set { mDicAggro = value; }
-        get { return mDicAggro; }
-    }
+    //public Dictionary<Hero_Control, int> DicAggro
+    //{
+    //    set { mDicAggro = value; }
+    //    get { return mDicAggro; }
+    //}
 
     public Hero_Control Target
     {
@@ -290,14 +290,16 @@ public class Hero_Control : MonoBehaviour
         FaceTo(tBattleStartTo);
         Vector3 vDir = tBattleStartTo.position - transform.position;
         vDir.Normalize();
-        transform.position += vDir * Time.deltaTime * mSpeed * 2f;
+        transform.position += vDir * Time.deltaTime * mSpeed * 4f;
 
         mIsMove = true;
         mActor.PlayAnimation(Actor.AnimationActor.ANI_WALK);
+        mActor.SetAnimationSpeed(Actor.AnimationActor.ANI_WALK, 2f);
 
         float dis = Vector3.Distance(transform.position, tBattleStartTo.position);
         if (dis < 0.01f)
         {
+            mActor.SetAnimationSpeed(Actor.AnimationActor.ANI_WALK, 1f);
             GameMain.Instance().BattleControl.BattleState = Battle_Control.eBattleState.eBattle_Ing;
             mHeroState = eHeroState.HEROSTATE_IDLE;
         }
@@ -306,15 +308,86 @@ public class Hero_Control : MonoBehaviour
     void MoveToBattleEndPos()
     {
         if (!MyTeam) return;
+
+        NearPath np = FindNearPath();
+        if (np == null) return;
+
+        FaceTo(np.mTran);
+        Vector3 vDir = np.mTran.position - transform.position;
+        vDir.Normalize();
+        transform.position += vDir * Time.deltaTime * mSpeed * 4f;
+
+        mIsMove = true;
+        mActor.PlayAnimation(Actor.AnimationActor.ANI_WALK);
+        mActor.SetAnimationSpeed(Actor.AnimationActor.ANI_WALK, 2f);
+
+        float dis = Vector3.Distance(transform.position, np.mTran.position);
+        if (dis < 0.01f)
+        {
+            np.mIsEntered = true;
+            np = NextNearPath();
+            if (np != null)
+            {
+                MoveToBattleEndPos();
+            }
+            else
+            {
+                mActor.SetAnimationSpeed(Actor.AnimationActor.ANI_WALK, 1f);
+                GameMain.Instance().BattleControl.BattleState = Battle_Control.eBattleState.eBattle_End;
+                mHeroState = eHeroState.HEROSTATE_IDLE;
+                return;
+            }
+        }
+    }
+
+    NearPath FindNearPath()
+    {
+        List<NearPath> listEndPos = GameMain.Instance().BattleControl.ListBattleEndPos;
+
+        int iSaveIndex = -1;
+        float fSavePos = float.MaxValue;
+        for (int i = 0; i < listEndPos.Count; ++i)
+        {
+            float fTempPos = Vector3.Distance(transform.position, listEndPos[i].mTran.position);
+            if (fSavePos > fTempPos && listEndPos[i].mIsEntered == false)
+            {
+                fSavePos = fTempPos;
+                iSaveIndex = i;                
+            }
+        }
+
+        for (int i = 0; i < iSaveIndex; ++i)
+        {
+            listEndPos[i].mIsEntered = true;
+        }
+        
+        return listEndPos[iSaveIndex];
+    }
+
+    NearPath NextNearPath()
+    {
+        List<NearPath> listEndPos = GameMain.Instance().BattleControl.ListBattleEndPos;
+        for (int i = 0; i < listEndPos.Count; ++i)
+        {
+            if (listEndPos[i].mIsEntered == false)
+            {
+                return listEndPos[i];
+            }
+        }
+
+        return null;
     }
 
     void HeroDie()
     {
-		BattleUI_Control bcUI = UIManager.Instance().GetUI() as BattleUI_Control;
+        if (mHeroState == eHeroState.HEROSTATE_NONE) return;
+
+        BattleUI_Control bcUI = UIManager.Instance().GetUI() as BattleUI_Control;
         if (bcUI != null)
         {
             bcUI.DestroyHPGauge(HeroUid);
             IsDie = true;
+            GameMain.Instance().BattleControl.CheckEndBattle();
         }
 
         if (!mActor.PlayAnimation(Actor.AnimationActor.ANI_DIE1))
@@ -421,47 +494,49 @@ public class Hero_Control : MonoBehaviour
 
     Hero_Control GetAggroHero()
     {
-        int maxAggro = 0;
-        Hero_Control targetHero = null;
+        //int maxAggro = 0;
+        //Hero_Control targetHero = null;
 
-        foreach( var elem in DicAggro)
-        {
-            if (elem.Key.IsDie) continue;
+        //foreach( var elem in DicAggro)
+        //{
+        //    if (elem.Key.IsDie) continue;
 
-            if (maxAggro < elem.Value)
-            {
-                maxAggro = elem.Value;
-                targetHero = elem.Key;
-            }
-        }
+        //    if (maxAggro < elem.Value)
+        //    {
+        //        maxAggro = elem.Value;
+        //        targetHero = elem.Key;
+        //    }
+        //}
 
-        if (targetHero == null) return null;
+        //if (targetHero == null) return null;
 
         Battle_Control bc = GameMain.Instance().BattleControl;
         if (bc == null) return null;
         if (MyTeam)
         {
-            for (int i = 0; i < bc.ListEnemyHeroes.Count; ++i)
-            {
-                if (bc.ListEnemyHeroes[i].HeroUid.Equals(targetHero.HeroUid))
-                {
-                    return bc.ListEnemyHeroes[i];
-                }
-            }
+            return GetNearTargetHero(bc.ListEnemyHeroes);
         }
         else
         {
-            for (int i = 0; i < bc.ListMyHeroes.Count; ++i)
+            return GetNearTargetHero(bc.ListEnemyHeroes);
+        }
+    }
+
+    Hero_Control GetNearTargetHero(List<Hero_Control> listHero)
+    {
+        int iIndex = -1;
+        float fSaveDis = float.MaxValue;
+        for (int i = 0; i < listHero.Count; ++i)
+        {
+            float fTemp = Vector3.Distance(transform.position, listHero[i].transform.position);
+            if (fSaveDis > fTemp && listHero[i].IsDie == false)
             {
-                if (bc.ListMyHeroes[i].HeroUid.Equals(targetHero.HeroUid))
-                {
-                    return bc.ListMyHeroes[i];
-                }
+                iIndex = i;
             }
         }
 
-        return null;
-    }    
+        return listHero[iIndex];
+    }
 
     void Walk()
     {

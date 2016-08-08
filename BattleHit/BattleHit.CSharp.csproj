@@ -248,7 +248,10 @@
     <Compile Include="Assets\Scripts\Battle\Hero_Control.cs" />
     <Compile Include="Assets\Scripts\Common\ComDef.cs" />
     <Compile Include="Assets\Scripts\Common\DestroyObject.cs" />
+    <Compile Include="Assets\Scripts\Common\ObjectPool\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Common\ObjectPool\ObjectPoolingManager.cs" />
     <Compile Include="Assets\Scripts\Common\UtilFunc.cs" />
+    <Compile Include="Assets\Scripts\Common\VResources.cs" />
     <Compile Include="Assets\Scripts\Effect\EffectData.cs" />
     <Compile Include="Assets\Scripts\Effect\EffectManager.cs" />
     <Compile Include="Assets\Scripts\GameMain\GameMain.cs" />

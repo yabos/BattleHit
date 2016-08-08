@@ -96,4 +96,9 @@ public class Actor : MonoBehaviour
 
         return bResult;
     }
+
+    public void SetAnimationSpeed(AnimationActor eActiveAni, float fSeepd = 1.0f)
+    {
+        anim[ClipName[(int)eActiveAni]].speed = fSeepd;
+    }
 }

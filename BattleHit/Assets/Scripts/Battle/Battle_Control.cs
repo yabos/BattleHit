@@ -2,6 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public class NearPath
+{
+    public bool mIsEntered = false;
+    public Transform mTran = null;
+}
+
 public class Battle_Control : MonoBehaviour
 {
     public enum eBattleState
@@ -10,6 +16,7 @@ public class Battle_Control : MonoBehaviour
         eBattle_Ing,
         eBattle_Win,
         eBattle_Lose,
+        eBattle_End,
     }
 
     public static readonly string stMapLoadPath = "Map/";
@@ -24,7 +31,7 @@ public class Battle_Control : MonoBehaviour
     int m_iLoadingState = 0;
 
     Transform mBattleStartTo = null;
-    List<Transform> mListBattleEndPos = new List<Transform>();
+    List<NearPath> mListBattleEndPos = new List<NearPath>();
 
     public eBattleState BattleState
     {
@@ -47,7 +54,7 @@ public class Battle_Control : MonoBehaviour
         get { return mBattleStartTo; }
     }
 
-    public List<Transform> ListBattleEndPos
+    public List<NearPath> ListBattleEndPos
     {
         get { return mListBattleEndPos; }
     }
@@ -63,8 +70,8 @@ public class Battle_Control : MonoBehaviour
     {
         LoadingProcess();
 
-        UpdateSortingLayer();        
-    }
+        UpdateSortingLayer();
+    }   
 
     void UpdateSortingLayer()
     {
@@ -111,7 +118,8 @@ public class Battle_Control : MonoBehaviour
                 break;
 
             case 3:
-                AggroInit();
+                //AggroInit();
+                m_iLoadingState++;
                 break;
 
             case 4:
@@ -208,26 +216,26 @@ public class Battle_Control : MonoBehaviour
         m_iLoadingState++;
     }
 
-    void AggroInit()
-    {
-        foreach (var nodeMy in mListMyHeroes)
-        {
-            foreach (var nodeEnemy in mListEnemyHeroes)
-            {
-                nodeMy.DicAggro.Add(nodeEnemy, 1);
-            }
-        }
+    //void AggroInit()
+    //{
+    //    foreach (var nodeMy in mListMyHeroes)
+    //    {
+    //        foreach (var nodeEnemy in mListEnemyHeroes)
+    //        {
+    //            nodeMy.DicAggro.Add(nodeEnemy, 1);
+    //        }
+    //    }
 
-        foreach (var nodeEnemy in mListEnemyHeroes)
-        {
-            foreach (var nodeMy in mListMyHeroes)
-            {
-                nodeEnemy.DicAggro.Add(nodeMy, 1);
-            }
-        }
+    //    foreach (var nodeEnemy in mListEnemyHeroes)
+    //    {
+    //        foreach (var nodeMy in mListMyHeroes)
+    //        {
+    //            nodeEnemy.DicAggro.Add(nodeMy, 1);
+    //        }
+    //    }
 
-        m_iLoadingState++;
-    }
+    //    m_iLoadingState++;
+    //}
 
     void InitBattlePos()
     {
@@ -241,9 +249,29 @@ public class Battle_Control : MonoBehaviour
         {
             Transform tEndPath = transform.FindChild("Map/RegenPos/MyTeam/EndPath" + i.ToString());
             if (tEndPath == null) continue;
-            mListBattleEndPos.Add(tEndPath);
+            NearPath np = new NearPath();
+            np.mIsEntered = false;
+            np.mTran = tEndPath;
+            mListBattleEndPos.Add(np);
         }
 
         m_iLoadingState++;
+    }
+
+    public void CheckEndBattle()
+    {
+        bool bAliveEnemy = false;
+        for (int i = 0; i < mListEnemyHeroes.Count; ++i)
+        {
+            if (!mListEnemyHeroes[i].IsDie)
+            {
+                bAliveEnemy = true;
+            }
+        }
+
+        if (!bAliveEnemy)
+        {
+            mBattleState = eBattleState.eBattle_Win;
+        }
     }
 }
