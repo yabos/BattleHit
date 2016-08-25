@@ -19,7 +19,7 @@ public class Battle_Control : MonoBehaviour
         eBattle_End,
     }
 
-    public static readonly string stMapLoadPath = "Map/";
+    public static readonly string stMapLoadPath = "Map/BattleMap/";
 
     eBattleState mBattleState = eBattleState.eBattle_Ready;
 
@@ -64,6 +64,9 @@ public class Battle_Control : MonoBehaviour
 		mLoading = GetComponent<SpriteRenderer> ();
 
         mBattleState = eBattleState.eBattle_Ready;
+
+        CreativeSpore.RpgMapEditor.Camera2DController cam2d =Camera.main.transform.GetComponent<CreativeSpore.RpgMapEditor.Camera2DController>();
+        cam2d.PixelToUnits = 300;
     }
 
     void Update()
@@ -142,10 +145,12 @@ public class Battle_Control : MonoBehaviour
             GameObject Map = GameObject.Instantiate( goMap ) as GameObject;
             if (Map != null)
             {
-                Map.transform.parent = transform;
+                Map.transform.parent = transform;                
+
                 Map.name = "Map";
 
-                Map.transform.position = Vector3.zero;
+                Vector3 vCamPos = Camera.main.transform.position;
+                Map.transform.position = new Vector3(vCamPos.x, vCamPos.y, 0);
                 Map.transform.rotation = Quaternion.identity;
                 Map.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             }
@@ -191,7 +196,7 @@ public class Battle_Control : MonoBehaviour
         Transform tTeam = transform.FindChild("Team/EnemyTeam");
         if (tTeam != null)
         {
-            for (int i = 0; i < 3; ++i)
+            for (int i = 0; i < 1; ++i)
             {
                 Hero_Control hero = UtilFunc.CreateHero(tTeam, 2001, 1, false);
                 if (hero != null)

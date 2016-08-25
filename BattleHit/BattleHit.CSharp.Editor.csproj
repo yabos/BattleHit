@@ -94,30 +94,6 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.EditorTestsRunner">
-      <HintPath>Library\UnityAssemblies\UnityEditor.EditorTestsRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.TreeEditor">
-      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -224,8 +200,24 @@
     <Compile Include="Assets\NGUI\Scripts\Editor\UIWidgetContainerEditor.cs" />
     <Compile Include="Assets\NGUI\Scripts\Editor\UIWidgetInspector.cs" />
     <Compile Include="Assets\NGUI\Scripts\Editor\UIWrapContentEditor.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Editor\AutoTileMapEditor.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Editor\AutoTilesetEditor.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Editor\AutoTilesetEditorWindow.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Editor\RpgMapMakerEditor.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Editor\ShortcutKeys.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Editor\TilesetComponent.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Editor\ToolIcons.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Animation\Editor\DirectionalAnimationControllerEditor.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Animation\Editor\DirectionalAnimationEditor.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Behaviours\Editor\PhysicCharBehaviourEditor.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Legacy\Editor\CharAnimationControllerEditor.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Legacy\Editor\CharAnimationWindow.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Utils\Editor\EditorUtils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\CreativeSpore\RpgMapEditor\Samples\Gfx\Characters\README_Credits.txt" />
+    <None Include="Assets\CreativeSpore\RpgMapEditor\Samples\Gfx\Tilesets\macks\README_Credits.txt" />
+    <None Include="Assets\CreativeSpore\RpgMapEditor\changelog.txt" />
     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />

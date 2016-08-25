@@ -518,7 +518,7 @@ public class Hero_Control : MonoBehaviour
         }
         else
         {
-            return GetNearTargetHero(bc.ListEnemyHeroes);
+            return GetNearTargetHero(bc.ListMyHeroes);
         }
     }
 

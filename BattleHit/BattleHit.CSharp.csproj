@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -255,6 +249,49 @@
     <Compile Include="Assets\Scripts\Effect\EffectData.cs" />
     <Compile Include="Assets\Scripts\Effect\EffectManager.cs" />
     <Compile Include="Assets\Scripts\GameMain\GameMain.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTile.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTileBrush.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTileMap.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTileMapData.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTileMapEditorBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTileMapGui.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTileMapSerializeData.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTileset.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\RpgMapHelper.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\TileChunk.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\TileChunkPool.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\UtilsAutoTileMap.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\UtilsGuiDrawing.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\UtilsSerialize.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\AutonomousAgents\MovingBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Extra\Camera2DController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Extra\ComboBox.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Extra\FollowObjectBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\MapPathFinding\MapPathFinding.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\MapPathFinding\MapPathFindingBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\MapPathFinding\PathFinding.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\AI\CompanionAI.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\AI\FollowerAI.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\AI\NPCBasicAI.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Animation\DirectionalAnimation.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Animation\DirectionalAnimationController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Behaviours\DamageBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Behaviours\HelpText.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Behaviours\PhysicCharBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Behaviours\TeleporterBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Behaviours\TouchFollowBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Controllers\AnimationController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Controllers\BulletController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Controllers\CharBasicController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Controllers\IsoSpriteController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Controllers\VehicleCharController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Controllers\WeaponController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Core\DamageData.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Core\GameFactory.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Core\ObjectGenerator.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\RpgFramework\Legacy\CharAnimationController.cs" />
+    <Compile Include="Assets\Scripts\MapEditor\Utils\HandlesEx.cs" />
     <Compile Include="Assets\Scripts\Table\StringTable.cs" />
     <Compile Include="Assets\Scripts\Table\TBManager.cs" />
     <Compile Include="Assets\Scripts\Table\TB_Hero.cs" />
@@ -265,6 +302,9 @@
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\CreativeSpore\RpgMapEditor\Samples\Gfx\Characters\README_Credits.txt" />
+    <None Include="Assets\CreativeSpore\RpgMapEditor\Samples\Gfx\Tilesets\macks\README_Credits.txt" />
+    <None Include="Assets\CreativeSpore\RpgMapEditor\changelog.txt" />
     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
