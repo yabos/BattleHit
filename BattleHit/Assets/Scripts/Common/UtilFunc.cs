@@ -71,4 +71,17 @@ public class UtilFunc
 
         return hero;
     }
+
+    public static void FadeIn()
+    {
+        GameObject goFade = GameObject.Find("FadeInOutManager");
+        if (goFade != null)
+        {
+            FadeInOutManager fiom = goFade.GetComponent<FadeInOutManager>();
+            if (fiom != null)
+            {
+                fiom.StartFadeIn();
+            }
+        }
+    }
 }

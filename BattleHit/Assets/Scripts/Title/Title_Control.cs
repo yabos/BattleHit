@@ -11,36 +11,61 @@ public class Title_Control : MonoBehaviour
 		Scene_Dun_01,
 	}
 
-	private AsyncOperation asyn = null;
+	private AsyncOperation m_Asyn = null;
 
-	public UISprite prog = null;
-	public UILabel progLabel = null;
+    public UISprite m_SpriteProg = null;
+	public UILabel m_LabelProg = null;
 
-	// Use this for initialization
-	void Start () 
-	{
-		int iSceneIndex = GetSceneIndexBySaveFile ();
-		StartCoroutine (LoadLevel(iSceneIndex));
-	}
-	
+    public GameObject m_goProg = null;
+    public GameObject m_goBtnTitle = null;
+    public GameObject m_goSaveFiles = null;
+    
 	private IEnumerator LoadLevel(int iSceneIndex)
 	{
-		asyn = SceneManager.LoadSceneAsync (iSceneIndex);
-		yield return asyn;
+        m_LabelProg.gameObject.SetActive(true);
+
+        m_Asyn = SceneManager.LoadSceneAsync (iSceneIndex);
+        yield return m_Asyn;
 	}
 
 	void Update()
 	{
-		if (asyn != null) 
+		if (m_Asyn != null) 
 		{
-			prog.fillAmount = asyn.progress;
-			string ss = (asyn.progress * 100).ToString () + "%";
-			progLabel.text = ss;
-		}
+			m_SpriteProg.fillAmount = m_Asyn.progress;
+			string ss = ((int)(m_Asyn.progress * 100)).ToString () + "%";
+			m_LabelProg.text = ss;
+        }
 	}
 
-	int GetSceneIndexBySaveFile()
+	int GetSceneIndexBySaveFile(string  stSaveFileNum)
 	{
 		return 1;
 	}
+
+    public void OnTitleClick()
+    {
+        m_goBtnTitle.SetActive(false);
+
+        UtilFunc.FadeIn();
+    }
+
+    public void LoadSaveFile(GameObject go)
+    {
+        m_goProg.SetActive(true);
+        m_goSaveFiles.SetActive(false);
+
+
+        int iSceneIndex = GetSceneIndexBySaveFile(go.name);
+        StartCoroutine(LoadSaveFile(iSceneIndex));
+    }
+
+    public IEnumerator LoadSaveFile(int iSceneIndex)
+    {     
+        StartCoroutine(LoadLevel(iSceneIndex));
+
+        yield return new WaitForEndOfFrame();
+
+        UtilFunc.FadeIn();
+    }
 }

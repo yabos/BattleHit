@@ -11,6 +11,12 @@ namespace CreativeSpore.RpgMapEditor
 		private Vector3 velocity = Vector3.zero;
         private Camera m_camera;
 
+        public bool m_bNotSmooth = false;
+        //public bool NotSmooth
+        //{
+        //    set { m_bNotSmooth = value; }
+        //}
+
         void Start()
         {
             m_camera = GetComponent<Camera>();
@@ -21,10 +27,21 @@ namespace CreativeSpore.RpgMapEditor
 		{
 			if (Target)
 			{
-                Vector3 point = m_camera.WorldToViewportPoint(Target.position);
-                Vector3 delta = Target.position - m_camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
-				Vector3 destination = transform.position + delta;
-				transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, DampTime);
+                if (!m_bNotSmooth)
+                {
+                    Vector3 point = m_camera.WorldToViewportPoint(Target.position);
+                    Vector3 delta = Target.position - m_camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
+                    Vector3 destination = transform.position + delta;
+                    transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, DampTime);
+                }
+                else
+                {
+                    Vector3 point = m_camera.WorldToViewportPoint(Target.position);
+                    Vector3 delta = Target.position - m_camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
+                    Vector3 destination = transform.position + delta;
+                    transform.position = destination;
+                    m_bNotSmooth = false;
+                }
 			}		
 		}
 	}

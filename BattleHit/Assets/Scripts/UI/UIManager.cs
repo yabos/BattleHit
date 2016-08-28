@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
 
     Transform mUICameraRoot = null;
     Camera mUICamera = null;
-    eUIState mUISate = eUIState.UIState_None;
+    //eUIState mUISate = eUIState.UIState_None;
     GameObject mCurrUI = null;
 
      
@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour
             }
 
             mCurrUI = uiRoot;
-            mUISate = state;
+            //mUISate = state;
         }        
     }
 

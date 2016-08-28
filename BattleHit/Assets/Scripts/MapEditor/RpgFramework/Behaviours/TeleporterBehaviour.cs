@@ -28,6 +28,9 @@ namespace CreativeSpore.RpgMapEditor
         private string m_savedSceneName;
         private string m_teleporterName;
 
+        public bool NotUseActivationKey = false;
+        public Transform RegenPos;
+
         void Start()
         {
             Reset();
@@ -61,7 +64,7 @@ namespace CreativeSpore.RpgMapEditor
 
         void Update()
         {            
-            m_isActivationKeyPressed = m_isActivationKeyPressed && Input.GetKey(ActivationKey) || Input.GetKeyDown(ActivationKey) && Time.timeSinceLevelLoad > 0.5f;
+            m_isActivationKeyPressed = m_isActivationKeyPressed && Input.GetKey(ActivationKey) || Input.GetKeyUp(ActivationKey) && Time.timeSinceLevelLoad > 0.5f;
         }
 
         void TeleportTo(GameObject srcObj, string dstObjName)
@@ -73,18 +76,38 @@ namespace CreativeSpore.RpgMapEditor
             }
             else
             {
-                if(LinkWithTarget)
+                TeleporterBehaviour teleporterBhv = targetTeleport.GetComponent<TeleporterBehaviour>();
+
+                if (LinkWithTarget)
                 {
-                    TeleporterBehaviour teleporterBhv = targetTeleport.GetComponent<TeleporterBehaviour>();
                     if(teleporterBhv)
                     {
                         teleporterBhv.TargetSceneName = m_savedSceneName;
                         teleporterBhv.TargetTeleporterName = m_teleporterName;
                     }
                 }
+
                 Vector3 targetPos = targetTeleport.transform.position;
+                if (teleporterBhv)
+                {
+                    if (teleporterBhv.RegenPos != null)
+                    {
+                        targetPos = teleporterBhv.RegenPos.position;
+                    }
+                }
+                
                 targetPos.z = transform.position.z;
                 srcObj.transform.position = targetPos;
+
+                GameObject goCamera = GameObject.Find("PlayerCamera");
+                if (goCamera != null)
+                {
+                    FollowObjectBehaviour fob = goCamera.GetComponent<FollowObjectBehaviour>();
+                    if (fob != null)
+                    {
+                        fob.m_bNotSmooth = true;
+                    }
+                }
             }
         }
 
@@ -93,17 +116,27 @@ namespace CreativeSpore.RpgMapEditor
         void OnTriggerEnter(Collider other)
         {
             PlayerController player = other.GetComponent<PlayerController>();
-            if (player != null && TeleportOnEnter && Time.frameCount > s_nextAllowedOnEnterFrame)
+            if (player != null)
             {
-                s_nextAllowedOnEnterFrame = Time.frameCount + 10;
-                DoTeleport( player.gameObject );
+                if (NotUseActivationKey)
+                {
+                    DoTeleport(player.gameObject);
+                }
+                else
+                {
+                    if (TeleportOnEnter && Time.frameCount > s_nextAllowedOnEnterFrame)
+                    {
+                        s_nextAllowedOnEnterFrame = Time.frameCount + 10;
+                        DoTeleport(player.gameObject);
+                    }
+                }
             }
         }
 
         void OnTriggerStay(Collider other)
         {
             PlayerController player = other.GetComponent<PlayerController>();
-            if (player != null && m_isActivationKeyPressed)
+            if (player != null && m_isActivationKeyPressed && !NotUseActivationKey)
             {
                 DoTeleport( player.gameObject );
             }

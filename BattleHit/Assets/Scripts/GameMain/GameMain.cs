@@ -76,10 +76,7 @@ public class GameMain : MonoBehaviour
         TBManager.Instance().LoadTableAll();
 
         ResourcesLoad();
-
-        TitleUILoad();
-
-        // Load save data.   
+        
     }
 
 
@@ -91,10 +88,10 @@ public class GameMain : MonoBehaviour
         EffectManager.Instance().EffectLoad();
     }
 
-    void TitleUILoad()
-    {
-        UIManager.Instance().TitleUILoad();
-    }
+    //void TitleUILoad()
+    //{
+    //    UIManager.Instance().TitleUILoad();
+    //}
 
     public void GoLobby()
     {
@@ -107,11 +104,8 @@ public class GameMain : MonoBehaviour
         StartCoroutine(LoadBattleRoot());
     }
 
-    // test loading code
-    bool bisLoading = false;
     IEnumerator LoadBattleRoot()
     {
-        bisLoading = true;
         yield return null;
 
 		GameObject goBattleRoot = VResources.Load<GameObject>(stBattleRootPath);
@@ -128,7 +122,5 @@ public class GameMain : MonoBehaviour
                 mBattleControl = mBattleRoot.GetComponent<Battle_Control>();
             }
         }
-
-        bisLoading = false;
     }
 }

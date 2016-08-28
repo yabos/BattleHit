@@ -75,12 +75,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FT_CartoonEffect_Vol02\Script\FTCT02_AnimationScrollTexture.cs" />
-    <Compile Include="Assets\FT_CartoonEffect_Vol02\Script\FTCT02_AnimationSpriteSheet.cs" />
-    <Compile Include="Assets\FT_CartoonEffect_Vol02\Script\FTCT02_DeadTime.cs" />
-    <Compile Include="Assets\FT_CartoonEffect_Vol02\Script\FTCT02_SampleSceneGUI.cs" />
-    <Compile Include="Assets\FT_CartoonEffect_Vol02\Script\FTCT02_StopCam.cs" />
-    <Compile Include="Assets\FT_CartoonEffect_Vol02\Script\FTCT02_VisibleBG.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -248,6 +242,7 @@
     <Compile Include="Assets\Scripts\Common\VResources.cs" />
     <Compile Include="Assets\Scripts\Effect\EffectData.cs" />
     <Compile Include="Assets\Scripts\Effect\EffectManager.cs" />
+    <Compile Include="Assets\Scripts\FadeInOutManager.cs" />
     <Compile Include="Assets\Scripts\GameMain\GameMain.cs" />
     <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTile.cs" />
     <Compile Include="Assets\Scripts\MapEditor\AutoTileMap\AutoTileBrush.cs" />
@@ -295,6 +290,7 @@
     <Compile Include="Assets\Scripts\Table\StringTable.cs" />
     <Compile Include="Assets\Scripts\Table\TBManager.cs" />
     <Compile Include="Assets\Scripts\Table\TB_Hero.cs" />
+    <Compile Include="Assets\Scripts\Title\Title_Control.cs" />
     <Compile Include="Assets\Scripts\UI\BaseUI.cs" />
     <Compile Include="Assets\Scripts\UI\Battle\BattleUI_Control.cs" />
     <Compile Include="Assets\Scripts\UI\Lobby\LobbyUI_Control.cs" />

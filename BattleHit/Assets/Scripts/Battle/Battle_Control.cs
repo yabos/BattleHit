@@ -27,7 +27,6 @@ public class Battle_Control : MonoBehaviour
     List<Hero_Control> mListEnemyHeroes = new List<Hero_Control>();
     List<Hero_Control> mListSortingLayer = new List<Hero_Control>();
 
-	SpriteRenderer mLoading = null;
     int m_iLoadingState = 0;
 
     Transform mBattleStartTo = null;
@@ -61,8 +60,6 @@ public class Battle_Control : MonoBehaviour
 
     void Start()
     {
-		mLoading = GetComponent<SpriteRenderer> ();
-
         mBattleState = eBattleState.eBattle_Ready;
 
         CreativeSpore.RpgMapEditor.Camera2DController cam2d =Camera.main.transform.GetComponent<CreativeSpore.RpgMapEditor.Camera2DController>();
