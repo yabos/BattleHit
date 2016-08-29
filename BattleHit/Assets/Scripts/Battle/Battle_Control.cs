@@ -73,6 +73,7 @@ public class Battle_Control : MonoBehaviour
         UpdateSortingLayer();
     }   
 
+
     void UpdateSortingLayer()
     {
         if (mListSortingLayer == null || mListSortingLayer.Count <= 0) return;

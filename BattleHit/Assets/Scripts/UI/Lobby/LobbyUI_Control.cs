@@ -15,6 +15,6 @@ public class LobbyUI_Control : BaseUI
         if (gm == null) return;
 
         
-        gm.GoBattle();
+        gm.LoadBattle();
     }
 }

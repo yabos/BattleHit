@@ -34,6 +34,8 @@ public class EffectManager : MonoBehaviour
         {
             Debug.LogError("Duplicate EffectManager");
         }
+
+		DontDestroyOnLoad (this);
     }
 
     public void EffectLoad()

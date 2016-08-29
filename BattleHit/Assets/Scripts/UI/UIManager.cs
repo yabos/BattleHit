@@ -50,27 +50,41 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogError("Duplicate UIManager");
         }
+
+		mUICameraRoot = GameObject.Find("UIRoot/Camera").transform;
+		if (mUICameraRoot == null)
+		{
+			Debug.LogError("Not Find UICameraRoot!");
+			return;
+		}
+
+		mUICamera = mUICameraRoot.GetComponent<Camera>();
+		if (mUICamera == null)
+		{
+			Debug.LogError("Not Find UICamera!");
+			return;
+		}
     }
 
     // Use this for initialization
-    public void TitleUILoad () 
-    {
-        mUICameraRoot = GameObject.Find("UIRoot/Camera").transform;
-        if (mUICameraRoot == null)
-        {
-            Debug.LogError("Not Find UICameraRoot!");
-            return;
-        }
-
-        mUICamera = mUICameraRoot.GetComponent<Camera>();
-        if (mUICamera == null)
-        {
-            Debug.LogError("Not Find UICamera!");
-            return;
-        }
-
-        LoadUI(eUIState.UIState_Title);
-    }
+//    public void TitleUILoad () 
+//    {
+//        mUICameraRoot = GameObject.Find("UIRoot/Camera").transform;
+//        if (mUICameraRoot == null)
+//        {
+//            Debug.LogError("Not Find UICameraRoot!");
+//            return;
+//        }
+//
+//        mUICamera = mUICameraRoot.GetComponent<Camera>();
+//        if (mUICamera == null)
+//        {
+//            Debug.LogError("Not Find UICamera!");
+//            return;
+//        }
+//
+//        LoadUI(eUIState.UIState_Title);
+//    }
 	
 	// Update is called once per frame
 	void Update () 

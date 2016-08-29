@@ -63,6 +63,8 @@ public class GameMain : MonoBehaviour
     void Start () 
     {
         Init();
+
+		DontDestroyOnLoad(this);
     }
 	
 	// Update is called once per frame
@@ -75,14 +77,14 @@ public class GameMain : MonoBehaviour
     {
         TBManager.Instance().LoadTableAll();
 
-        ResourcesLoad();
-        
-    }
+        //ResourcesLoad();
 
+
+    }
 
     void ResourcesLoad()
     {
-        // 3d model lad
+        // 3d model load
 
         // effect load
         EffectManager.Instance().EffectLoad();
@@ -98,7 +100,7 @@ public class GameMain : MonoBehaviour
         UIManager.Instance().LoadUI(UIManager.eUIState.UIState_Lobby);
     }
 
-    public void GoBattle()
+    public void LoadBattle()
     {
         UIManager.Instance().LoadUI(UIManager.eUIState.UIState_Battle);
         StartCoroutine(LoadBattleRoot());
@@ -120,7 +122,15 @@ public class GameMain : MonoBehaviour
                 mBattleRoot.transform.localScale = Vector3.one;
 
                 mBattleControl = mBattleRoot.GetComponent<Battle_Control>();
+				mBattleRoot.SetActive (true);
             }
         }
     }
+
+	public void BattleStart()
+	{
+		LoadBattle ();
+
+
+	}
 }

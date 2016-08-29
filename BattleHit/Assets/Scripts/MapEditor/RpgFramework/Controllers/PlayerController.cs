@@ -14,6 +14,8 @@ namespace CreativeSpore.RpgMapEditor
         public SpriteRenderer WeaponSprite;
         public int FogSightLength = 5;
 
+		private float EnemyEncountTime = 0;
+
         /// <summary>
         /// If player is driving a vehicle, this will be that vehicle
         /// </summary>
@@ -153,6 +155,13 @@ namespace CreativeSpore.RpgMapEditor
                 {
                     //m_phyChar.Dir.Normalize();
                     m_camera2DFollowBehaviour.Target = transform;
+					EnemyEncountTime += Time.deltaTime;
+					if (EnemyEncountTime > 3f) 
+					{
+						GameMain.Instance ().BattleStart ();
+						EnemyEncountTime = 0;
+						gameObject.SetActive (false);
+					}
                 }
                 else
                 {

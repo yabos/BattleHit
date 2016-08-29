@@ -3,26 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class TBManager 
+public class TBManager : MonoBehaviour
 {
-    protected static TBManager m_Instance = null;
-    public static TBManager Instance()
-    {
-        if (m_Instance == null)
-        {
-            m_Instance = new TBManager();
-        }
-
-        return m_Instance;
-    }
-
-    protected TBManager()
-    { }
-
+	private static TBManager instance;  
+	private static GameObject container;
+	public static TBManager Instance()  
+	{  
+		if( !instance )  
+		{  
+			container = new GameObject();
+			container.name = "TBManager";
+			instance = container.AddComponent(typeof(TBManager)) as TBManager;  
+		}  
+		return instance;  
+	}  
 
     // ------------------------------------//
 
     public Dictionary<int, TB_Hero> cont_Hero = null;
+
+	void Awake()
+	{
+		DontDestroyOnLoad (this);
+	}
 
     void LoadHeroTable()
     {
