@@ -97,12 +97,12 @@ public class GameMain : MonoBehaviour
 
     public void GoLobby()
     {
-        UIManager.Instance().LoadUI(UIManager.eUIState.UIState_Lobby);
+        //UIManager.Instance().LoadUI(UIManager.eUIState.UIState_Lobby);
     }
 
     public void LoadBattle()
     {
-        UIManager.Instance().LoadUI(UIManager.eUIState.UIState_Battle);
+        UIManager.Instance().ActiveUI(UIManager.eUIState.UIState_Battle);
         StartCoroutine(LoadBattleRoot());
     }
 
@@ -131,6 +131,15 @@ public class GameMain : MonoBehaviour
 	{
 		LoadBattle ();
 
-
-	}
+        GameObject goCamera = GameObject.Find("PlayerCamera");
+        if (goCamera != null)
+        {
+            CreativeSpore.RpgMapEditor.FollowObjectBehaviour fob = goCamera.GetComponent<CreativeSpore.RpgMapEditor.FollowObjectBehaviour>();
+            if (fob != null)
+            {
+                //fob.m_bNotSmooth = true;
+                fob.DampTime = 0;
+            }
+        }
+    }
 }

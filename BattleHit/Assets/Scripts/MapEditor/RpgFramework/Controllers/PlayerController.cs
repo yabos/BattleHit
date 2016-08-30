@@ -156,11 +156,11 @@ namespace CreativeSpore.RpgMapEditor
                     //m_phyChar.Dir.Normalize();
                     m_camera2DFollowBehaviour.Target = transform;
 					EnemyEncountTime += Time.deltaTime;
-					if (EnemyEncountTime > 3f) 
+					if (EnemyEncountTime > 1f) 
 					{
 						GameMain.Instance ().BattleStart ();
 						EnemyEncountTime = 0;
-						gameObject.SetActive (false);
+                        gameObject.SetActive (false);
 					}
                 }
                 else

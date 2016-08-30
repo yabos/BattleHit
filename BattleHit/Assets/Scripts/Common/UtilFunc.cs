@@ -62,7 +62,7 @@ public class UtilFunc
             }
 
             // create hero hp
-			BattleUI_Control bcUI = UIManager.Instance().GetUI() as BattleUI_Control;
+			BattleUI_Control bcUI = UIManager.Instance().GetBattleUI() as BattleUI_Control;
             if (bcUI != null)
             {
                 bcUI.CreateHeroHp(uid, bMyTeam);

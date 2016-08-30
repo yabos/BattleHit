@@ -63,7 +63,7 @@ public class Battle_Control : MonoBehaviour
         mBattleState = eBattleState.eBattle_Ready;
 
         CreativeSpore.RpgMapEditor.Camera2DController cam2d =Camera.main.transform.GetComponent<CreativeSpore.RpgMapEditor.Camera2DController>();
-        cam2d.PixelToUnits = 300;
+        cam2d.PixelToUnits = 200;
     }
 
     void Update()
@@ -128,8 +128,6 @@ public class Battle_Control : MonoBehaviour
                 break;
 
 			case 5:
-				BattleUI_Control ui = UIManager.Instance ().GetUI () as BattleUI_Control;
-				ui.ActiveLoadingIMG (false);
 				m_iLoadingState++;
 				break;
         }
