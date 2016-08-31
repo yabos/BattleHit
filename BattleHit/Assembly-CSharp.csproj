@@ -263,8 +263,7 @@
      <Compile Include="Assets\Scripts\Title\Title_Control.cs" />
      <Compile Include="Assets\Scripts\UI\BaseUI.cs" />
      <Compile Include="Assets\Scripts\UI\Battle\BattleUI_Control.cs" />
-     <Compile Include="Assets\Scripts\UI\Lobby\LobbyUI_Control.cs" />
-     <Compile Include="Assets\Scripts\UI\Title\TitleUI_Control.cs" />
+     <Compile Include="Assets\Scripts\UI\Field\FieldUI_Control.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.9.0.txt" />

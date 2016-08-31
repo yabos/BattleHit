@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour
                 uiRoot.transform.position = Vector3.zero;
                 uiRoot.transform.rotation = Quaternion.identity;
                 uiRoot.transform.localScale = Vector3.one;
-                uiRoot.AddComponent<BattleUI_Control>();
+				uiRoot.AddComponent<BattleUI_Control>();
                 uiRoot.SetActive(false);
 
                 mBattleUI = uiRoot;
@@ -146,6 +146,15 @@ public class UIManager : MonoBehaviour
     public void ActiveUI(eUIState state)
     {
         mFieldUI.SetActive(state == eUIState.UIState_Field);
+
         mBattleUI.SetActive(state == eUIState.UIState_Battle);
+		if (state == eUIState.UIState_Battle) 
+		{
+			BattleUI_Control bcUI = mBattleUI.GetComponent<BattleUI_Control> ();
+			if (bcUI != null) 
+			{
+				bcUI.DestroyAllHPGauge ();
+			}
+		}
     }
 }

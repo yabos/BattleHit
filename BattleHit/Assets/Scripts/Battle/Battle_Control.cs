@@ -261,18 +261,43 @@ public class Battle_Control : MonoBehaviour
 
     public void CheckEndBattle()
     {
-        bool bAliveEnemy = false;
+		bool bAliveHeroes = false;
+		for (int i = 0; i < mListMyHeroes.Count; ++i)
+		{
+			if (!mListMyHeroes[i].IsDie)
+			{
+				bAliveHeroes = true;
+			}
+		}
+		if (!bAliveHeroes)
+		{
+			mBattleState = eBattleState.eBattle_Lose;
+			EndBattle ();
+			return;
+		}
+
+		bAliveHeroes = false;
         for (int i = 0; i < mListEnemyHeroes.Count; ++i)
         {
             if (!mListEnemyHeroes[i].IsDie)
             {
-                bAliveEnemy = true;
+                bAliveHeroes = true;
             }
         }
 
-        if (!bAliveEnemy)
+        if (!bAliveHeroes)
         {
             mBattleState = eBattleState.eBattle_Win;
+			EndBattle ();
         }
     }
+
+	public void EndBattle()
+	{
+		UIManager.Instance ().ActiveUI (UIManager.eUIState.UIState_Field);
+		GameMain.Instance ().SetCameraPixelToUnit (100);
+		GameMain.Instance ().SetCameraFloowObjBehaviour (0.15f);
+		GameMain.Instance ().FieldPlayer.SetActive (true);
+		NGUITools.Destroy (gameObject);
+	}
 }

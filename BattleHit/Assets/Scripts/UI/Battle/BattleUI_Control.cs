@@ -114,4 +114,19 @@ public class BattleUI_Control : BaseUI
             }
         }
     }
+
+	public void DestroyAllHPGauge()
+	{
+		if (mHeroHp == null)
+			return;
+
+		for (int i = mHeroHp.childCount - 1; i >= 0; --i) 
+		{
+			Transform tChild = mHeroHp.GetChild(i);
+			if (tChild == null)
+				continue;
+
+			NGUITools.Destroy (tChild.gameObject);
+		}
+	}
 }

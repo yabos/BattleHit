@@ -250,11 +250,19 @@ public class Hero_Control : MonoBehaviour
                     else if (bc.BattleState == Battle_Control.eBattleState.eBattle_Win)
                     {
                         // 아군 이겼을 때 포즈 후 다음 스테이지로
-                        MoveToBattleEndPos();
+                        //MoveToBattleEndPos();
+						if (MyTeam) 
+						{
+							mHeroState = eHeroState.HEROSTATE_IDLE;
+						}
                     }
                     else if (bc.BattleState == Battle_Control.eBattleState.eBattle_Lose)
                     {
                         // 적이 이겼을 때 포즈
+						if (!MyTeam) 
+						{
+							mHeroState = eHeroState.HEROSTATE_IDLE;
+						}
                     }
                 }                
                 break;

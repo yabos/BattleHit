@@ -21,13 +21,16 @@ public class GameMain : MonoBehaviour
 
     //ComDef.GameState mGameState = ComDef.GameState.GAMESTATE_LOBBY;
 
-    public float mGameSpeed = 2f;
+    public float mGameSpeed = 1f;
 
-    GameObject mUIRoot = null;    
-    UIManager mUIManager = null;
+    GameObject mUIRoot = null;
 
     GameObject mBattleRoot = null;
     Battle_Control mBattleControl = null;
+
+	GameObject mFieldPlayer = null;
+	GameObject mFieldMainCamera = null;
+	CreativeSpore.RpgMapEditor.Camera2DController mCamera2DControl = null;
 
     public GameObject UIRoot
     {
@@ -46,6 +49,24 @@ public class GameMain : MonoBehaviour
         set { mBattleControl = value; }
         get { return mBattleControl; }
     }
+
+	public GameObject FieldPlayer
+	{
+		set { mFieldPlayer = value;}
+		get { return mFieldPlayer;}
+	}
+
+	public GameObject FieldMainCamera
+	{
+		set { mFieldMainCamera = value;}
+		get { return mFieldMainCamera;}
+	}
+
+	public CreativeSpore.RpgMapEditor.Camera2DController Camera2DControl
+	{
+		set { mCamera2DControl = value;}
+		get { return mCamera2DControl;}
+	}
 
     void Awake()
     {
@@ -76,11 +97,24 @@ public class GameMain : MonoBehaviour
     void Init()
     {
         TBManager.Instance().LoadTableAll();
-
-        //ResourcesLoad();
-
-
     }
+
+	void OnLevelWasLoaded()
+	{
+		mFieldPlayer = GameObject.Find ("Player");
+		if (mFieldPlayer == null) 
+		{
+			Debug.LogError ("Not find field Player");
+		}
+
+		mFieldMainCamera = GameObject.Find("PlayerCamera");
+		if (mFieldMainCamera == null) 
+		{
+			Debug.LogError ("Not find field PlayerCamera");
+		}
+
+		mCamera2DControl = mFieldMainCamera.GetComponent<CreativeSpore.RpgMapEditor.Camera2DController> ();
+	}
 
     void ResourcesLoad()
     {
@@ -129,17 +163,27 @@ public class GameMain : MonoBehaviour
 
 	public void BattleStart()
 	{
+		SetCameraFloowObjBehaviour (0);
 		LoadBattle ();
-
-        GameObject goCamera = GameObject.Find("PlayerCamera");
-        if (goCamera != null)
-        {
-            CreativeSpore.RpgMapEditor.FollowObjectBehaviour fob = goCamera.GetComponent<CreativeSpore.RpgMapEditor.FollowObjectBehaviour>();
-            if (fob != null)
-            {
-                //fob.m_bNotSmooth = true;
-                fob.DampTime = 0;
-            }
-        }
     }
+
+	public void SetCameraPixelToUnit(float fValue)
+	{
+		if (mCamera2DControl != null) 
+		{
+			mCamera2DControl.PixelToUnits = fValue;
+		}
+	}
+
+	public void SetCameraFloowObjBehaviour(float fValue)
+	{
+		if (mFieldMainCamera != null)
+		{
+			CreativeSpore.RpgMapEditor.FollowObjectBehaviour fob = mFieldMainCamera.GetComponent<CreativeSpore.RpgMapEditor.FollowObjectBehaviour>();
+			if (fob != null)
+			{
+				fob.DampTime = fValue;
+			}
+		}
+	}
 }
