@@ -46,7 +46,10 @@ public class EffectManager : MonoBehaviour
             Debug.LogError("Not Find Effect/Hero/Hit!");
         }
 
-        mDicEffectPool.Add(eEffectType.EFFECT_BATTLE_HIT, efc);
+        if (!mDicEffectPool.ContainsKey(eEffectType.EFFECT_BATTLE_HIT))
+        {
+            mDicEffectPool.Add(eEffectType.EFFECT_BATTLE_HIT, efc);
+        }
     }
 
     public GameObject GetEffect(eEffectType eType)

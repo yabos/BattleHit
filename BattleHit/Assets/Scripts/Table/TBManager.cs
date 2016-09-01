@@ -21,8 +21,9 @@ public class TBManager : MonoBehaviour
     // ------------------------------------//
 
     public Dictionary<int, TB_Hero> cont_Hero = null;
+    public Dictionary<int, TB_MapInfo> cont_MapInfo = null;
 
-	void Awake()
+    void Awake()
 	{
 		DontDestroyOnLoad (this);
 	}
@@ -65,8 +66,43 @@ public class TBManager : MonoBehaviour
         }
     }
 
+    void LoadMapInfoTable()
+    {
+        cont_MapInfo = new Dictionary<int, TB_MapInfo>();
+
+        StringTable st = new StringTable();
+
+        if (false == st.Build("Table/TB_MapInfo")) { return; }
+
+        int iRowCount = st.row;
+
+        for (int x = 0; x < iRowCount; ++x)
+        {
+            TB_MapInfo tbMapInfo = new TB_MapInfo();
+
+            tbMapInfo.mMapNo = st.GetValueAsInt(x, "MapNo");
+            tbMapInfo.mEnableBattle = st.GetValueAsInt(x, "EnableBattleScene");
+
+            for (int i = 0; i < 5; ++i)
+            {
+                string stRegenMon = "RegenMon" + i.ToString();
+                tbMapInfo.mArrRegenMosters[i] = st.GetValueAsInt(x, stRegenMon);
+            }
+
+            int key = tbMapInfo.mMapNo;
+            if (cont_MapInfo.ContainsKey(key))
+            {
+                Debug.LogError("Already exist key. " + key.ToString());
+            }
+
+            cont_MapInfo.Add(key, tbMapInfo);
+        }
+    }
+
+
     public void LoadTableAll()
     {
         LoadHeroTable();
+        LoadMapInfoTable();
     }
 }

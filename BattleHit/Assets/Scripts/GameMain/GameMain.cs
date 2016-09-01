@@ -19,8 +19,6 @@ public class GameMain : MonoBehaviour
 
     public static readonly string stBattleRootPath = "Battle/Prefabs/Battle_Root";
 
-    //ComDef.GameState mGameState = ComDef.GameState.GAMESTATE_LOBBY;
-
     public float mGameSpeed = 1f;
 
     GameObject mUIRoot = null;
@@ -31,6 +29,8 @@ public class GameMain : MonoBehaviour
 	GameObject mFieldPlayer = null;
 	GameObject mFieldMainCamera = null;
 	CreativeSpore.RpgMapEditor.Camera2DController mCamera2DControl = null;
+
+    TB_MapInfo mTableMapInfo = null;
 
     public GameObject UIRoot
     {
@@ -99,9 +99,14 @@ public class GameMain : MonoBehaviour
         TBManager.Instance().LoadTableAll();
     }
 
-	void OnLevelWasLoaded()
+	void OnLevelWasLoaded(int iLevel)
 	{
-		mFieldPlayer = GameObject.Find ("Player");
+        if (!TBManager.Instance().cont_MapInfo.ContainsKey(iLevel)) return;
+
+        mTableMapInfo = TBManager.Instance().cont_MapInfo[iLevel];
+        if (mTableMapInfo == null) return;
+
+        mFieldPlayer = GameObject.Find ("Player");
 		if (mFieldPlayer == null) 
 		{
 			Debug.LogError ("Not find field Player");
@@ -114,24 +119,9 @@ public class GameMain : MonoBehaviour
 		}
 
 		mCamera2DControl = mFieldMainCamera.GetComponent<CreativeSpore.RpgMapEditor.Camera2DController> ();
-	}
 
-    void ResourcesLoad()
-    {
-        // 3d model load
-
-        // effect load
         EffectManager.Instance().EffectLoad();
-    }
 
-    //void TitleUILoad()
-    //{
-    //    UIManager.Instance().TitleUILoad();
-    //}
-
-    public void GoLobby()
-    {
-        //UIManager.Instance().LoadUI(UIManager.eUIState.UIState_Lobby);
     }
 
     public void LoadBattle()
@@ -186,4 +176,18 @@ public class GameMain : MonoBehaviour
 			}
 		}
 	}
+
+    public bool IsEnableBattle()
+    {
+        if (mTableMapInfo == null) return false;
+
+        if (mTableMapInfo.mEnableBattle == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }

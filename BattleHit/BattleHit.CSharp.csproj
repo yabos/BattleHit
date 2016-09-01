@@ -298,6 +298,7 @@
     <Compile Include="Assets\Scripts\Table\StringTable.cs" />
     <Compile Include="Assets\Scripts\Table\TBManager.cs" />
     <Compile Include="Assets\Scripts\Table\TB_Hero.cs" />
+    <Compile Include="Assets\Scripts\Table\TB_MapInfo.cs" />
     <Compile Include="Assets\Scripts\Title\Title_Control.cs" />
     <Compile Include="Assets\Scripts\UI\BaseUI.cs" />
     <Compile Include="Assets\Scripts\UI\Battle\BattleUI_Control.cs" />
@@ -353,6 +354,9 @@
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Resources\Table\TB_Hero.txt" />
     <None Include="Assets\Simple Particle Scaler\Simple Particle Scaler - Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Resources\Table\TB_MapInfo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
