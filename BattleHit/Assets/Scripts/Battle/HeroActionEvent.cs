@@ -16,6 +16,8 @@ public class HeroActionEvent : MonoBehaviour
 
     void OnAttack()
     {
+        if (mHero.Target == null) return;
+
         if (mHero.Target.IsDie)
         {
             mHero.Target = null;

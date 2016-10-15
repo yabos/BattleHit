@@ -47,32 +47,21 @@ public class UtilFunc
                 hero.HeroObj = go;
             }
 
-			GameObject goAttackedRes = VResources.Load<GameObject> ("Heroes/Prefabs/AttakedPos");
-            if (goAttackedRes == null) return null;
-
-            GameObject goAttacked = GameObject.Instantiate(goAttackedRes) as GameObject;
-            if (goAttacked != null)
-            {
-                goAttacked.transform.parent = goHero.transform;
-                goAttacked.transform.name = "AttackedPos";
-
-                goAttacked.transform.position = Vector3.zero;
-                goAttacked.transform.rotation = Quaternion.identity;
-                goAttacked.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            }
-
             // create hero hp
-			BattleUI_Control bcUI = UIManager.Instance().GetBattleUI() as BattleUI_Control;
-            if (bcUI != null)
+            if (bMyTeam)
             {
-                bcUI.CreateHeroHp(uid, bMyTeam);
+                BattleUI_Control bcUI = UIManager.Instance().GetBattleUI() as BattleUI_Control;
+                if (bcUI != null)
+                {
+                    bcUI.CreateHeroHp(uid, bMyTeam);
+                }
             }
         }
 
         return hero;
     }
 
-    public static void FadeIn()
+    public static void FadeInOut(bool bFadeIn)
     {
         GameObject goFade = GameObject.Find("FadeInOutManager");
         if (goFade != null)
@@ -80,7 +69,14 @@ public class UtilFunc
             FadeInOutManager fiom = goFade.GetComponent<FadeInOutManager>();
             if (fiom != null)
             {
-                fiom.StartFadeIn();
+                if (bFadeIn)
+                {
+                    fiom.StartFadeIn();
+                }
+                else
+                {
+                    fiom.StartFadeOut();
+                }
             }
         }
     }

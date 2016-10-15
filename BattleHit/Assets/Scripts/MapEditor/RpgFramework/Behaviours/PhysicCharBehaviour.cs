@@ -23,8 +23,9 @@ namespace CreativeSpore.RpgMapEditor
 
 		private Vector3 m_vPrevPos;
 		private float m_speed;
+        private bool m_bStop;
 
-		public eCollFlags CollFlags = eCollFlags.NONE;
+        public eCollFlags CollFlags = eCollFlags.NONE;
 
 		public Rect CollRect = new Rect(-0.14f, -0.04f, 0.28f, 0.12f);
 
@@ -32,6 +33,12 @@ namespace CreativeSpore.RpgMapEditor
 		{
 			get { return Dir.sqrMagnitude > 0; }
 		}
+
+        public bool IsStop
+        {
+            set { m_bStop = value; }
+            get { return m_bStop; }
+        }
 
         void Start()
         {
@@ -41,8 +48,10 @@ namespace CreativeSpore.RpgMapEditor
 		// Update is called once per frame
 		void FixedUpdate () 
 		{
-			//RpgMapHelper.DebugDrawRect( transform.position, CollRect, Color.white );
-			if (Dir.sqrMagnitude > 0f)
+            if (m_bStop) return;
+
+            //RpgMapHelper.DebugDrawRect( transform.position, CollRect, Color.white );
+            if (Dir.sqrMagnitude > 0f)
 			{
 				// divide by n per second ( n:2 )
 				m_speed += (MaxSpeed - m_speed) / Mathf.Pow(2f, Time.deltaTime);

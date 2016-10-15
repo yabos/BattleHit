@@ -198,7 +198,7 @@ public class Hero_Control : MonoBehaviour
         MyStateControl();
         //AggroControl();
         BlowUpdate();
-        HPGaugePosUpdate();
+        //HPGaugePosUpdate();
     }
 
     
@@ -240,7 +240,7 @@ public class Hero_Control : MonoBehaviour
                     if (bc.BattleState == Battle_Control.eBattleState.eBattle_Ready)
                     {
                         // 전투 준비 중일 때 시작 위치로 아군이동
-                        MoveToBattleReadyPos();
+                        //MoveToBattleReadyPos();
                     }
                     else if (bc.BattleState == Battle_Control.eBattleState.eBattle_Ing)
                     {
@@ -250,7 +250,8 @@ public class Hero_Control : MonoBehaviour
                     else if (bc.BattleState == Battle_Control.eBattleState.eBattle_Win)
                     {
                         // 아군 이겼을 때 포즈 후 다음 스테이지로
-                        //MoveToBattleEndPos();
+                        MoveToBattleEndPos();
+
 						if (MyTeam) 
 						{
 							mHeroState = eHeroState.HEROSTATE_IDLE;
@@ -288,64 +289,43 @@ public class Hero_Control : MonoBehaviour
         }
     }
 
-    void MoveToBattleReadyPos()
-    {
-        if (!MyTeam) return;
+    //void MoveToBattleReadyPos()
+    //{
+    //    if (!MyTeam)
+    //    {
+    //        mActor.PlayAnimation(Actor.AnimationActor.ANI_WALK);
+    //        return;
+    //    }
 
-        Transform tBattleStartTo = GameMain.Instance().BattleControl.BattleStartTo;
-        if (tBattleStartTo == null) return;
+    //    Transform tBattleStartTo = GameMain.Instance().BattleControl.BattleStartTo;
+    //    if (tBattleStartTo == null) return;
 
-        FaceTo(tBattleStartTo);
-        Vector3 vDir = tBattleStartTo.position - transform.position;
-        vDir.Normalize();
-        transform.position += vDir * Time.deltaTime * mSpeed * 4f;
+    //    FaceTo(tBattleStartTo);
+    //    Vector3 vDir = tBattleStartTo.position - transform.position;
+    //    vDir.Normalize();
+    //    transform.position += vDir * Time.deltaTime * mSpeed * 4f;
 
-        mIsMove = true;
-        mActor.PlayAnimation(Actor.AnimationActor.ANI_WALK);
-        mActor.SetAnimationSpeed(Actor.AnimationActor.ANI_WALK, 2f);
+    //    mIsMove = true;
+    //    mActor.PlayAnimation(Actor.AnimationActor.ANI_WALK);
+    //    mActor.SetAnimationSpeed(2f);
 
-        float dis = Vector3.Distance(transform.position, tBattleStartTo.position);
-        if (dis < 0.01f)
-        {
-            mActor.SetAnimationSpeed(Actor.AnimationActor.ANI_WALK, 1f);
-            GameMain.Instance().BattleControl.BattleState = Battle_Control.eBattleState.eBattle_Ing;
-            mHeroState = eHeroState.HEROSTATE_IDLE;
-        }
-    }
+    //    float dis = Vector3.Distance(transform.position, tBattleStartTo.position);
+    //    if (dis < 0.01f)
+    //    {
+    //        mActor.SetAnimationSpeed(1f);
+    //        GameMain.Instance().BattleControl.BattleState = Battle_Control.eBattleState.eBattle_Ing;
+    //        mHeroState = eHeroState.HEROSTATE_IDLE;
+    //    }
+    //}
 
     void MoveToBattleEndPos()
     {
         if (!MyTeam) return;
-
-        NearPath np = FindNearPath();
-        if (np == null) return;
-
-        FaceTo(np.mTran);
-        Vector3 vDir = np.mTran.position - transform.position;
-        vDir.Normalize();
-        transform.position += vDir * Time.deltaTime * mSpeed * 4f;
+        
+        transform.position += Vector3.right * Time.deltaTime * mSpeed * 2f;
 
         mIsMove = true;
         mActor.PlayAnimation(Actor.AnimationActor.ANI_WALK);
-        mActor.SetAnimationSpeed(Actor.AnimationActor.ANI_WALK, 2f);
-
-        float dis = Vector3.Distance(transform.position, np.mTran.position);
-        if (dis < 0.01f)
-        {
-            np.mIsEntered = true;
-            np = NextNearPath();
-            if (np != null)
-            {
-                MoveToBattleEndPos();
-            }
-            else
-            {
-                mActor.SetAnimationSpeed(Actor.AnimationActor.ANI_WALK, 1f);
-                GameMain.Instance().BattleControl.BattleState = Battle_Control.eBattleState.eBattle_End;
-                mHeroState = eHeroState.HEROSTATE_IDLE;
-                return;
-            }
-        }
     }
 
     NearPath FindNearPath()
@@ -426,7 +406,10 @@ public class Hero_Control : MonoBehaviour
 
     void BeHit()
     {
-        if (mActor.IsPlaying(Actor.AnimationActor.ANI_ATT1)) return;
+        //if (mActor.IsPlaying(Actor.AnimationActor.ANI_ATT1))
+        //{
+        //    return;
+        //}
 
         if (!mActor.PlayAnimation(Actor.AnimationActor.ANI_HIT))
         {
@@ -443,13 +426,26 @@ public class Hero_Control : MonoBehaviour
 
     void AttHero()
     {
-        //if (mActor.IsPlaying(Actor.AnimationActor.ANI_IDLE) || mActor.IsPlaying(Actor.AnimationActor.ANI_WALK))
+        if (mTarget != null && mTarget.IsDie)
         {
-            FaceTo(mTarget);
+            mHeroState = eHeroState.HEROSTATE_IDLE;
+            return;
+        }
 
-            if (!mActor.PlayAnimation(Actor.AnimationActor.ANI_ATT1))
+        if (!mActor.PlayAnimation(Actor.AnimationActor.ANI_ATT1))
+        {
+            mActor.SetAnimationSpeed(1f);
+            mHeroState = eHeroState.HEROSTATE_IDLE;
+        }
+        else
+        {
+            if (mMyTeam)
             {
-                mHeroState = eHeroState.HEROSTATE_IDLE;
+                mActor.SetAnimationSpeed(0.7f);
+            }
+            else
+            {
+                mActor.SetAnimationSpeed(0.5f);
             }
         }
     }
@@ -464,7 +460,7 @@ public class Hero_Control : MonoBehaviour
             //    mActor.PlayAnimation(Actor.AnimationActor.ANI_IDLE, true);
             //}
 
-            mActor.PlayAnimation(Actor.AnimationActor.ANI_IDLE);
+            //mActor.PlayAnimation(Actor.AnimationActor.ANI_IDLE);
         }
         else
         {            
@@ -550,50 +546,43 @@ public class Hero_Control : MonoBehaviour
     {
         if (mTarget == null) return;
 
-        string stTargetPath = null;
-        int iCount = 0;
-        AttPos = MoveDir(mTarget, ref iCount);
-        if (AttPos == eAttPos.ATTPOS_NONE) return;
+        //string stTargetPath = null;
+        //int iCount = 0;
+        //AttPos = MoveDir(mTarget, ref iCount);
+        //if (AttPos == eAttPos.ATTPOS_NONE) return;
 
-        if (AttPos == eAttPos.ATTPOS_LEFT)
-        {
-            stTargetPath = "AttackedPos/Left";
-        }
-        else if (AttPos == eAttPos.ATTPOS_RIGHT)
-        {
-            stTargetPath = "AttackedPos/Right";
-        }
+        //if (AttPos == eAttPos.ATTPOS_LEFT)
+        //{
+        //    stTargetPath = "AttackedPos/Left";
+        //}
+        //else if (AttPos == eAttPos.ATTPOS_RIGHT)
+        //{
+        //    stTargetPath = "AttackedPos/Right";
+        //}
 
-        Transform tPos = mTarget.transform.Find(stTargetPath);
-        if (tPos == null) return;
-        Vector3 vPos = tPos.position;
-        if (iCount > 0)
-        {
-            if (mTarget.Target != this)
-            {
-                vPos += new Vector3(0, 0.15f, 0);
-            }
-        }
+        //Transform tPos = mTarget.transform.Find(stTargetPath);
+        //if (tPos == null) return;
+        //Vector3 vPos = tPos.position;
+        //if (iCount > 0)
+        //{
+        //    if (mTarget.Target != this)
+        //    {
+        //        vPos += new Vector3(0, 0.15f, 0);
+        //    }
+        //}
 
-        float dis = Vector3.Distance(transform.position, vPos);
-        if (dis < 0.01f)
-        {
-            FaceTo(mTarget);
+        Vector3 vPos = mTarget.transform.position;
+        //float dis = Vector3.Distance(transform.position, vPos);
+        //if (dis < 0.01f)
 
+        FaceTo(mTarget);
+        if (AttRangeCheck())
+        {
             mIsMove = false;
-
-            if (AttRangeCheck())
-            {
-                mHeroState = eHeroState.HEROSTATE_ATT;
-            }
-            else
-            {
-                mHeroState = eHeroState.HEROSTATE_IDLE;
-            }
+            mHeroState = eHeroState.HEROSTATE_ATT;
         }
         else
         {
-            FaceTo(mTarget);
             Vector3 vDir = vPos - transform.position;
             vDir.Normalize();
             transform.position += vDir * Time.deltaTime * mSpeed * 2f;
@@ -711,7 +700,7 @@ public class Hero_Control : MonoBehaviour
         {
             StartCoroutine(DamagedHeroColor(0.1f));
 
-            mHeroState = eHeroState.HEROSTATE_HIT;
+            //mHeroState = eHeroState.HEROSTATE_HIT;
         }
     }
 
@@ -726,30 +715,60 @@ public class Hero_Control : MonoBehaviour
         float amount =  (float)HP / (float)MaxHP;
         bcUI.UpdateHPGauge(mHeroUid, amount);
 
-        GameObject goEfc = EffectManager.Instance().GetEffect(EffectManager.eEffectType.EFFECT_BATTLE_HIT); 
-        if (goEfc != null)
+        Vector3 vPos = Camera.main.WorldToScreenPoint(mEf_HP.position);
+        Vector3 vPos1 = UIManager.Instance().ScreenToWorldPoint(vPos);
+        bcUI.CreateDamage(atthero.Atk, vPos1, mMyTeam);
+        if (mMyTeam)
         {
-            Transform tCen = HeroObj.transform.FindChild("ef_Center");
-            if( tCen != null )
+            SoundManager.Instance().PlaySoundOnce("OgreHit");
+        }
+        else
+        {
+            SoundManager.Instance().PlaySoundOnce("HeroHit");
+        }
+
+        if (!mMyTeam)
+        {
+            GameObject goEfc = EffectManager.Instance().GetEffect(EffectManager.eEffectType.EFFECT_BATTLE_HIT);
+            if (goEfc != null)
             {
-                Battle_Control bc = GameMain.Instance().BattleControl;
-                Transform tEffect = bc.transform.FindChild("Effect");
-                
-                goEfc.transform.parent = tEffect; 
-                goEfc.transform.position = tCen.position;
-                
-                ParticleSystem [] pcs = goEfc.GetComponentsInChildren<ParticleSystem>();
-                if (pcs != null)
+                Transform tCen = HeroObj.transform.FindChild("ef_HitEfc");
+                if (tCen != null)
                 {
-                    for (int i = 0; i < pcs.Length; ++i)
+                    Battle_Control bc = GameMain.Instance().BattleControl;
+                    Transform tEffect = bc.transform.FindChild("Effect");
+
+                    goEfc.transform.parent = tEffect;
+                    goEfc.transform.localPosition = tCen.position;
+                    //goEfc.transform.localScale = new Vector2(2, 2);
+
+                    Renderer[] pcs = goEfc.GetComponentsInChildren<Renderer>();
+                    if (pcs != null)
                     {
-                        Renderer render = pcs[i].GetComponent<Renderer>();
-                        if (render != null)
-                        { 
-                            render.sortingOrder = MaxSortingOrderNo;
-                            render.sortingLayerName = "Hero";
+                        for (int i = 0; i < pcs.Length; ++i)
+                        {
+                            Renderer render = pcs[i];
+                            if (render != null)
+                            {
+                                render.sortingOrder = MaxSortingOrderNo;
+                                render.sortingLayerName = "Hero";
+                            }
                         }
                     }
+
+                    //ParticleSystem[] pcs = goEfc.GetComponentsInChildren<ParticleSystem>();
+                    //if (pcs != null)
+                    //{
+                    //    for (int i = 0; i < pcs.Length; ++i)
+                    //    {
+                    //        Renderer render = pcs[i].GetComponent<Renderer>();
+                    //        if (render != null)
+                    //        {
+                    //            render.sortingOrder = MaxSortingOrderNo;
+                    //            render.sortingLayerName = "Hero";
+                    //        }
+                    //    }
+                    //}
                 }
             }
         }

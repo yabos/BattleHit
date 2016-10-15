@@ -21,7 +21,7 @@ public class Battle_Control : MonoBehaviour
 
     public static readonly string stMapLoadPath = "Map/BattleMap/";
 
-    eBattleState mBattleState = eBattleState.eBattle_Ready;
+    eBattleState mBattleState = eBattleState.eBattle_Ing;
 
     List<Hero_Control> mListMyHeroes = new List<Hero_Control>();
     List<Hero_Control> mListEnemyHeroes = new List<Hero_Control>();
@@ -60,10 +60,10 @@ public class Battle_Control : MonoBehaviour
 
     void Start()
     {
-        mBattleState = eBattleState.eBattle_Ready;
+        mBattleState = eBattleState.eBattle_Ing;
 
         CreativeSpore.RpgMapEditor.Camera2DController cam2d =Camera.main.transform.GetComponent<CreativeSpore.RpgMapEditor.Camera2DController>();
-        cam2d.PixelToUnits = 200;
+        cam2d.PixelToUnits = 101;
     }
 
     void Update()
@@ -72,7 +72,6 @@ public class Battle_Control : MonoBehaviour
 
         UpdateSortingLayer();
     }   
-
 
     void UpdateSortingLayer()
     {
@@ -119,15 +118,10 @@ public class Battle_Control : MonoBehaviour
                 break;
 
             case 3:
-                //AggroInit();
-                m_iLoadingState++;
-                break;
-
-            case 4:
                 InitBattlePos();
                 break;
 
-			case 5:
+			case 4:
 				m_iLoadingState++;
 				break;
         }
@@ -148,7 +142,11 @@ public class Battle_Control : MonoBehaviour
                 Vector3 vCamPos = Camera.main.transform.position;
                 Map.transform.position = new Vector3(vCamPos.x, vCamPos.y, 0);
                 Map.transform.rotation = Quaternion.identity;
-                Map.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                Map.transform.localScale = new Vector3(1f, 1f, 1f);
+
+                // 전투 맵 테이블 읽어서 해당 전투에 맞는   BGM 틀어주자.
+                // 일단은 무조건  battlebgm
+                SoundManager.Instance().PlayBattleBGM(SoundManager.eBattleBGM.eBattleBGM_Normal);
             }
         }
 
@@ -167,7 +165,7 @@ public class Battle_Control : MonoBehaviour
                 Hero_Control hero = UtilFunc.CreateHero(tTeam, 1001, 1, true);
                 if (hero != null)
                 {
-                    Transform tSPos = transform.FindChild("Map/RegenPos/MyTeam/StartFrom");
+                    Transform tSPos = transform.FindChild("Map/RegenPos/MyTeam/0");
                     if (tSPos != null)
                     {
                         hero.transform.position = tSPos.position;
@@ -192,12 +190,12 @@ public class Battle_Control : MonoBehaviour
         Transform tTeam = transform.FindChild("Team/EnemyTeam");
         if (tTeam != null)
         {
-            for (int i = 0; i < 1; ++i)
+            //for (int i = 0; i < 1; ++i)
             {
                 Hero_Control hero = UtilFunc.CreateHero(tTeam, 2001, 1, false);
                 if (hero != null)
                 {
-                    Transform tSPos = transform.FindChild("Map/RegenPos/EnemyTeam/" + i.ToString());
+                    Transform tSPos = transform.FindChild("Map/RegenPos/EnemyTeam/0");
                     if (tSPos != null)
                     {
                         hero.transform.position = tSPos.position;
@@ -272,7 +270,9 @@ public class Battle_Control : MonoBehaviour
 		if (!bAliveHeroes)
 		{
 			mBattleState = eBattleState.eBattle_Lose;
-			EndBattle ();
+            UtilFunc.FadeInOut(true);
+
+            StartCoroutine(EndBattle(2));
 			return;
 		}
 
@@ -288,16 +288,24 @@ public class Battle_Control : MonoBehaviour
         if (!bAliveHeroes)
         {
             mBattleState = eBattleState.eBattle_Win;
-			EndBattle ();
+
+            StartCoroutine(EndBattle(2));
         }
     }
 
-	public void EndBattle()
+	IEnumerator EndBattle(float fTime)
 	{
-		UIManager.Instance ().ActiveUI (UIManager.eUIState.UIState_Field);
+        yield return new WaitForSeconds(fTime);
+
+        UtilFunc.FadeInOut(true);
+
+        UIManager.Instance ().ActiveUI(UIManager.eUIState.UIState_Field);
 		GameMain.Instance ().SetCameraPixelToUnit (100);
 		GameMain.Instance ().SetCameraFloowObjBehaviour (0.15f);
 		GameMain.Instance ().FieldPlayer.SetActive (true);
-		NGUITools.Destroy (gameObject);
+
+        SoundManager.Instance().PlayCurrentBGM();
+
+        NGUITools.Destroy (gameObject);
 	}
 }

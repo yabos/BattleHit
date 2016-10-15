@@ -5,7 +5,8 @@ public class FadeInOutManager : MonoBehaviour
 {
     public SpriteRenderer m_FadeImage = null;
 
-    public bool m_bFadeIn = false;
+    bool m_bFadeIn = false;
+    bool m_bFadeOut = false;
 
     void Awake()
     {
@@ -18,11 +19,22 @@ public class FadeInOutManager : MonoBehaviour
         {
             FadeIn();
         }
+
+        if (m_bFadeOut)
+        {
+            FadeOut();
+        }
     }
 
     public void StartFadeIn()
     {
         m_bFadeIn = true;
+        m_FadeImage.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    public void StartFadeOut()
+    {
+        m_bFadeOut = true;
         m_FadeImage.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
@@ -55,6 +67,11 @@ public class FadeInOutManager : MonoBehaviour
 
         Color color = m_FadeImage.GetComponent<SpriteRenderer>().color;
         m_FadeImage.GetComponent<SpriteRenderer>().color = Color.Lerp(color, Color.white, Time.deltaTime);
+
+        if (color.Equals(Color.white))
+        {
+            m_bFadeOut = false;
+        }
     }
 
     //public void FadeInOut()

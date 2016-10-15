@@ -47,7 +47,7 @@ public class Title_Control : MonoBehaviour
     {
         m_goBtnTitle.SetActive(false);
 
-        UtilFunc.FadeIn();
+        UtilFunc.FadeInOut(true);
     }
 
     public void LoadSaveFile(GameObject go)
@@ -55,7 +55,7 @@ public class Title_Control : MonoBehaviour
         m_goProg.SetActive(true);
         m_goSaveFiles.SetActive(false);
 
-
+        // 나중에 세이브 파일에서 씬 인덱스도 얻어와야 된다.
         int iSceneIndex = GetSceneIndexBySaveFile(go.name);
         StartCoroutine(LoadSaveFile(iSceneIndex));
     }
@@ -66,6 +66,9 @@ public class Title_Control : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        UtilFunc.FadeIn();
+        // 일단 타이틀에서는 테스트로 기본 마을 사운드를 부르자.
+        // 나중에는 테이블에서 읽어오거나 해서 만들자.
+        SoundManager.Instance().PlayBGM(SoundManager.eBGMType.eBGM_BaseVill);
+        UtilFunc.FadeInOut(true);
     }
 }

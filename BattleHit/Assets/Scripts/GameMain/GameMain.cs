@@ -101,6 +101,8 @@ public class GameMain : MonoBehaviour
 
 	void OnLevelWasLoaded(int iLevel)
 	{
+        if (TBManager.Instance().cont_MapInfo == null) return;
+
         if (!TBManager.Instance().cont_MapInfo.ContainsKey(iLevel)) return;
 
         mTableMapInfo = TBManager.Instance().cont_MapInfo[iLevel];
@@ -132,6 +134,8 @@ public class GameMain : MonoBehaviour
 
     IEnumerator LoadBattleRoot()
     {
+        UtilFunc.FadeInOut(true);
+
         yield return null;
 
 		GameObject goBattleRoot = VResources.Load<GameObject>(stBattleRootPath);

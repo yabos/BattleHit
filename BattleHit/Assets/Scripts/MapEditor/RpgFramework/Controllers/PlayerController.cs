@@ -88,7 +88,7 @@ namespace CreativeSpore.RpgMapEditor
 				vBulletPos = new Vector3( -0.08f, -0.02f, 0f );
 				vBulletPos += transform.position;
 				vBulletDir = Vector3.down;
-				m_animCtrl.AnimDirection = eAnimDir.Down;
+				//m_animCtrl.AnimDirection = eAnimDir.Down;
 				m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
 			}
@@ -97,7 +97,7 @@ namespace CreativeSpore.RpgMapEditor
 				vBulletPos = new Vector3( -0.10f, 0.10f, 0f );
 				vBulletPos += transform.position;
 				vBulletDir = -Vector3.right;
-                m_animCtrl.AnimDirection = eAnimDir.Left;
+                //m_animCtrl.AnimDirection = eAnimDir.Left;
 				m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
 			}
@@ -106,7 +106,7 @@ namespace CreativeSpore.RpgMapEditor
 				vBulletPos = new Vector3( 0.10f, 0.10f, 0f );
 				vBulletPos += transform.position;
 				vBulletDir = Vector3.right;
-                m_animCtrl.AnimDirection = eAnimDir.Right;
+                //m_animCtrl.AnimDirection = eAnimDir.Right;
 				m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
 			}
@@ -115,7 +115,7 @@ namespace CreativeSpore.RpgMapEditor
 				vBulletPos = new Vector3( 0.08f, 0.32f, 0f );
 				vBulletPos += transform.position;
 				vBulletDir = -Vector3.down;
-                m_animCtrl.AnimDirection = eAnimDir.Up;
+                //m_animCtrl.AnimDirection = eAnimDir.Up;
 				m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
 			}
@@ -134,12 +134,12 @@ namespace CreativeSpore.RpgMapEditor
 
         protected override void Update()
 		{
-            eAnimDir savedAnimDir = m_animCtrl.AnimDirection;
+            //eAnimDir savedAnimDir = m_animCtrl.AnimDirection;
             base.Update();
             if(m_keepAttackDirTimer > 0f)
             {
                 m_keepAttackDirTimer -= Time.deltaTime;
-                m_animCtrl.AnimDirection = savedAnimDir;
+                //m_animCtrl.AnimDirection = savedAnimDir;
             }
             m_phyChar.enabled = (Vehicle == null);
             if (Vehicle != null)
@@ -159,7 +159,7 @@ namespace CreativeSpore.RpgMapEditor
                     if (GameMain.Instance().IsEnableBattle())
                     {
                         EnemyEncountTime += Time.deltaTime;
-                        if (EnemyEncountTime > 5f)
+                        if (EnemyEncountTime > 100f)
                         {
                             GameMain.Instance().BattleStart();                            
                             gameObject.SetActive(false);

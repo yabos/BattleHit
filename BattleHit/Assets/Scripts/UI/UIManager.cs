@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class UIManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class UIManager : MonoBehaviour
     string[] UIPath = new string[]
     { 
         "",
-        "UI/Lobby/LobbyUI",
+        "UI/Field/FieldUI",
         "UI/Battle/BattleUI"
     };
 
@@ -74,6 +75,11 @@ public class UIManager : MonoBehaviour
 	
 	}
 
+    public Vector3 ScreenToWorldPoint(Vector3 vPos)
+    {
+        return mUICamera.ScreenToWorldPoint(vPos);
+    }
+
     public void LoadUI()
     {
         StartCoroutine(LoadUICoroutine());
@@ -81,8 +87,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator LoadUICoroutine()
     {
-        string stPath = "UI/Field/FieldUI";
-        GameObject goUI = VResources.Load<GameObject>(stPath);
+        GameObject goUI = VResources.Load<GameObject>(UIPath[(int)eUIState.UIState_Field]);
         if (goUI != null)
         {
             GameObject uiRoot = GameObject.Instantiate(goUI);
@@ -100,8 +105,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        stPath = "UI/Battle/BattleUI";
-        goUI = VResources.Load<GameObject>(stPath);
+        goUI = VResources.Load<GameObject>(UIPath[(int)eUIState.UIState_Battle]);
         if (goUI != null)
         {
             GameObject uiRoot = GameObject.Instantiate(goUI);

@@ -78,6 +78,17 @@ namespace CreativeSpore.RpgMapEditor
                 m_velocity = Random.rotation * Vector2.right;
                 m_velocity = m_velocity.normalized * MovingStepDist;
                 if (!Target) Target = FindObjectOfType<PlayerController>().gameObject;
+                //if (!Target)
+                //{
+                //    PlayerController pc = FindObjectOfType<PlayerController>();
+                //    if (!pc)
+                //    {
+                //        Target = pc.gameObject;
+                //    }
+
+                //    if (!Target) yield break;
+                //}
+
                 if (Target)
                 {
                     Vector2 vDist = FleeFromTarget ? transform.position - Target.transform.position : Target.transform.position - transform.position;

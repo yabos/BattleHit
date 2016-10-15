@@ -20,6 +20,7 @@ namespace CreativeSpore.RpgMapEditor
         MapPathFindingBehaviour m_pathFindingBehaviour;
         DirectionalAnimation m_animCtrl;
 
+        bool bWarp = false;
 
         // Use this for initialization
         void Start()
@@ -51,6 +52,7 @@ namespace CreativeSpore.RpgMapEditor
                 {
                     // get the hit point:
                     m_pathFindingBehaviour.TargetPos = ray.GetPoint(distance);
+                    bWarp = false;
                 }
             }
             Vector3 vTarget = m_pathFindingBehaviour.TargetPos;
@@ -61,7 +63,7 @@ namespace CreativeSpore.RpgMapEditor
             Vector3 vDist = (vTarget - transform.position);
             //Debug.DrawLine(vTarget, transform.position); //TODO: the target is the touch position, not the target tile center. Fix this to go to target position once in the target tile
             m_pathFindingBehaviour.enabled = vDist.magnitude > MinDistToReachTarget;            
-            if (!m_pathFindingBehaviour.enabled)
+            if (!m_pathFindingBehaviour.enabled || bWarp)
             {
                 m_moving.Veloc = Vector3.zero;
             }
@@ -72,6 +74,11 @@ namespace CreativeSpore.RpgMapEditor
             {
                 UpdateAnimDir();
             }
+        }
+
+        void OnLevelWasLoaded(int iLevel)
+        {
+            bWarp = true;
         }
     }
 }

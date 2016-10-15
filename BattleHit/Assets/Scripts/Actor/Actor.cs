@@ -26,9 +26,9 @@ public class Actor : MonoBehaviour
         "death2"
     };
 
-    public Animation anim = null;
+    //public Animation anim = null;
+    public Animator anim = null;
     AnimationActor mAniState = AnimationActor.ANI_IDLE;
-    float[] mAniTime = null;
 
     Hero_Control mHero = null;
 
@@ -41,16 +41,8 @@ public class Actor : MonoBehaviour
     // Use this for initialization
     void Start () 
     {
-        anim = transform.GetComponent<Animation>();
-
-        mAniTime = new float[(int)AnimationActor.ANI_MAX];
-        for (int i = 0; i < (int)AnimationActor.ANI_MAX; ++i)
-        {
-            if( i == (int)AnimationActor.ANI_HIT )
-                mAniTime[i] = anim[ClipName[i]].length * 2f;
-            else
-                mAniTime[i] = anim[ClipName[i]].length;
-        }
+        //anim = transform.GetComponent<Animation>();
+        anim = transform.GetComponent<Animator>();
 
         mHero = transform.parent.GetComponent<Hero_Control>();
         if (mHero == null)
@@ -61,13 +53,25 @@ public class Actor : MonoBehaviour
 
     public bool IsPlaying(AnimationActor eActiveAni)
     {
-        return anim.IsPlaying(ClipName[(int)eActiveAni]);
+        //return anim.IsPlaying(ClipName[(int)eActiveAni]);
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName(ClipName[(int)eActiveAni]))
+        {
+            return AnimatorIsPlaying();
+        }
+
+        return false;
+    }
+
+    bool AnimatorIsPlaying()
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).length >=
+               anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
     }
 
     public bool PlayAnimation(AnimationActor eActiveAni, bool bLoop = false)
     {
-        bool bResult = false;    
-        if (anim.isPlaying == false)
+        bool bResult = false;
+        if (AnimatorIsPlaying() == false)
         {
             if (eActiveAni == AnimationActor.ANI_DIE1 ||
                 eActiveAni == AnimationActor.ANI_DIE2)
@@ -82,7 +86,7 @@ public class Actor : MonoBehaviour
                 //}
                 //else
                 {
-                    anim.CrossFade(ClipName[(int)AnimationActor.ANI_IDLE], 0.1f);
+                    anim.Play(ClipName[(int)AnimationActor.ANI_IDLE]);
                 }
 
                 bResult = false;
@@ -90,15 +94,15 @@ public class Actor : MonoBehaviour
         }
         else
         {
-            anim.CrossFade(ClipName[(int)eActiveAni], 0.1f);
+            anim.Play(ClipName[(int)eActiveAni]);
             bResult = true;
         }
 
         return bResult;
     }
 
-    public void SetAnimationSpeed(AnimationActor eActiveAni, float fSeepd = 1.0f)
+    public void SetAnimationSpeed(float fSeepd = 1.0f)
     {
-        anim[ClipName[(int)eActiveAni]].speed = fSeepd;
+        anim.speed = fSeepd;
     }
 }

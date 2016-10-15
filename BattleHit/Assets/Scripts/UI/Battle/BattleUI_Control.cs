@@ -4,20 +4,18 @@ using System.Collections;
 public class BattleUI_Control : BaseUI
 {
     Transform mHeroHp = null;
+    Transform mDamage = null;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
-        mHeroHp = transform.FindChild("Anchor/HeroHP");
+        mHeroHp = transform.FindChild("Anchor_TL/HeroHP");
         if (mHeroHp == null) return;
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
-	}
 
+        mDamage = transform.FindChild("Anchor/Damage");
+        if (mDamage == null) return;
+    }
+	
     public void CreateHeroHp(System.Guid uid, bool bMyTeam)
     {
         StartCoroutine(CreateHp(uid, bMyTeam));
@@ -33,11 +31,11 @@ public class BattleUI_Control : BaseUI
             GameObject goHP = GameObject.Instantiate(goHPRes) as GameObject;
             if (goHP != null)
             {
-                goHP.transform.parent = mHeroHp.transform;
+                goHP.transform.parent = mHeroHp;
                 goHP.transform.name = uid.ToString();
 
-                goHP.transform.position = Vector3.zero;
-                goHP.transform.rotation = Quaternion.identity;
+                goHP.transform.localPosition = Vector3.zero;
+                goHP.transform.localRotation = Quaternion.identity;
                 goHP.transform.localScale = Vector3.one;
 
                 Transform tSlider = goHP.transform.FindChild("SpriteSlider");
@@ -58,7 +56,6 @@ public class BattleUI_Control : BaseUI
                 }
 
                 goHP.SetActive(true);
-
             }
         }
     }
@@ -129,4 +126,39 @@ public class BattleUI_Control : BaseUI
 			NGUITools.Destroy (tChild.gameObject);
 		}
 	}
+
+    public void CreateDamage(int iDamage, Vector3 vPos, bool bMyTeam)
+    {
+        GameObject goDamageRes = null;
+        if (bMyTeam)
+        {
+            goDamageRes = VResources.Load<GameObject>("UI/Common/Prefabs/HeroDamage1");
+        }
+        else
+        {
+            goDamageRes = VResources.Load<GameObject>("UI/Common/Prefabs/HeroDamage2");
+        }
+
+        if (goDamageRes != null)
+        {
+            GameObject goDamage = GameObject.Instantiate(goDamageRes) as GameObject;
+            if (goDamage != null)
+            {
+                goDamage.transform.parent = mDamage;
+
+                goDamage.transform.position = new Vector3( vPos.x, vPos.y, 0);
+                goDamage.transform.localRotation = Quaternion.identity;
+                goDamage.transform.localScale = Vector3.one;
+                HeroDamage hd = goDamage.GetComponent<HeroDamage>();
+                if (hd != null)
+                {
+                    hd.m_LabelDamage.text = iDamage.ToString();
+                    if (bMyTeam)
+                    {
+                        hd.m_LabelDamage.color = Color.white;
+                    }
+                }
+            }
+        }
+    }
 }

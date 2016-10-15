@@ -22,6 +22,7 @@ public class TBManager : MonoBehaviour
 
     public Dictionary<int, TB_Hero> cont_Hero = null;
     public Dictionary<int, TB_MapInfo> cont_MapInfo = null;
+    public Dictionary<string, TB_Conversation> cont_String = null;
 
     void Awake()
 	{
@@ -99,10 +100,51 @@ public class TBManager : MonoBehaviour
         }
     }
 
+    void LoadConverTable()
+    {
+        cont_String = new Dictionary<string, TB_Conversation>();
+
+        StringTable st = new StringTable();
+
+        if (false == st.Build("Table/TB_Conversation")) { return; }
+
+        int iRowCount = st.row;
+
+        for (int x = 0; x < iRowCount; ++x)
+        {
+            TB_Conversation tbString = new TB_Conversation();
+
+            tbString.mStringNo = st.GetValueAsInt(x, "NPCNo");
+            tbString.mScenarioNo= st.GetValueAsInt(x, "ScenarioNo");
+            tbString.stString = st.GetValue(x, "String");
+
+            string key = tbString.mStringNo.ToString() + "_" + tbString.mScenarioNo.ToString();
+            if (cont_String.ContainsKey(key))
+            {
+                Debug.LogError("Already exist key. " + key.ToString());
+            }
+
+            cont_String.Add(key, tbString);
+        }
+    }
 
     public void LoadTableAll()
     {
         LoadHeroTable();
         LoadMapInfoTable();
+        LoadConverTable();
+    }
+
+    public string GetConverText(int iStringNo)
+    {
+        int iStep = GameDataManager.Instance().iScenarioStep;
+        string key = iStringNo.ToString() + "_" + iStep.ToString();
+        TB_Conversation tableString = null;
+        if (TBManager.Instance().cont_String.TryGetValue(key, out tableString))
+        {
+            return tableString.stString;
+        }
+
+        return string.Empty;
     }
 }
