@@ -24,13 +24,16 @@ public class UtilFunc
             hero.MaxHP = hero.HP;
             hero.Atk = tbHero.mAtk + Mathf.CeilToInt(((float)(iLv - 1) * ((float)tbHero.mAtk * 0.1f)));
             hero.Def = tbHero.mDef + Mathf.CeilToInt(((float)(iLv - 1) * ((float)tbHero.mDef * 0.1f)));
+            hero.AttSpeed = tbHero.mAttSpeed;
+            hero.Critical = tbHero.mCritical;
             hero.BlowPower = tbHero.mBlowPower;
             hero.BlowTolerance = tbHero.mBlowTolerance;
-            hero.Speed = tbHero.mSpeed;
+            hero.BattleMoveSpeed = tbHero.mBattleMoveSpeed;
             hero.StResPath = tbHero.stResPath;
             hero.MyTeam = bMyTeam;
+            hero.CalcStat();
 
-			GameObject goRes = VResources.Load<GameObject> (hero.StResPath);
+            GameObject goRes = VResources.Load<GameObject> (hero.StResPath);
             if (goRes == null) return null;
 
             GameObject go = GameObject.Instantiate(goRes) as GameObject;

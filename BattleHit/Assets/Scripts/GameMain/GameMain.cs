@@ -194,4 +194,25 @@ public class GameMain : MonoBehaviour
             return true;
         }
     }
+
+    public void GetEncountMonsterInfo(ref int iMonIndex, ref int iMonLv)
+    {
+        if (mTableMapInfo == null) return;
+
+        int iCount = mTableMapInfo.mArrRegenMostersPer.Length;
+        int iMaxPer = mTableMapInfo.SumMonsterPer();
+        int iRandomValue = UnityEngine.Random.Range(1,iMaxPer);
+
+        int iRanSum = 0;
+        for (int i = 0; i < iCount; ++i)
+        {
+            iRanSum += mTableMapInfo.mArrRegenMostersPer[i];
+            if (iRandomValue <= iRanSum)
+            {
+                iMonIndex = mTableMapInfo.mArrRegenMosters[i];
+                iMonLv = mTableMapInfo.mMonLv;
+                break;
+            }
+        }
+    }
 }

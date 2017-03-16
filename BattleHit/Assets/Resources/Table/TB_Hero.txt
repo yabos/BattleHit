@@ -1,5 +1,5 @@
-HeroNo,HP,Atk,Def,Speed,BlowPower,BlowTolerance,ResPath,Scale
-1001,500,10,10,400,0,0,Heroes/Prefabs/Knight,1000
-1002,550,12,10,400,0,1,Heroes/Prefabs/Ninja,1000
-2001,600,10,8,400,0,0,Heroes/Prefabs/Ogre,1000
-2002,400,15,12,400,0,1,Heroes/Prefabs/Skeleton,1000
+﻿HeroNo,HP,Atk,Def,AttSpeed,Critical,BattleMoveSpeed,BlowPower,BlowTolerance,ResPath,Scale
+1001,500,100,10,1.5,1000,400,0,0,Heroes/Prefabs/Knight,1000
+1002,1000,50,10,0.5,1000,400,0,0,Heroes/Prefabs/Ogre,1000
+1003,1000,50,10,0.7,1000,400,0,0,Heroes/Prefabs/Wolf,1000
+1004,1000,50,10,1,1000,400,0,0,Heroes/Prefabs/Bat,1000

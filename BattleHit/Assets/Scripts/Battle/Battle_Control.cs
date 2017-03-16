@@ -142,7 +142,7 @@ public class Battle_Control : MonoBehaviour
                 Vector3 vCamPos = Camera.main.transform.position;
                 Map.transform.position = new Vector3(vCamPos.x, vCamPos.y, 0);
                 Map.transform.rotation = Quaternion.identity;
-                Map.transform.localScale = new Vector3(1f, 1f, 1f);
+                Map.transform.localScale = new Vector3(1f, 0.8f, 1f);
 
                 // 전투 맵 테이블 읽어서 해당 전투에 맞는   BGM 틀어주자.
                 // 일단은 무조건  battlebgm
@@ -160,21 +160,19 @@ public class Battle_Control : MonoBehaviour
         Transform tTeam = transform.FindChild("Team/MyTeam");
         if (tTeam != null)
         {
-            //for (int i = 0; i < 3; ++i)
+            Hero_Control hero = UtilFunc.CreateHero(tTeam, 1001, 1, true);
+            if (hero != null)
             {
-                Hero_Control hero = UtilFunc.CreateHero(tTeam, 1001, 1, true);
-                if (hero != null)
+                Transform tSPos = transform.FindChild("Map/RegenPos/MyTeam/0");
+                if (tSPos != null)
                 {
-                    Transform tSPos = transform.FindChild("Map/RegenPos/MyTeam/0");
-                    if (tSPos != null)
-                    {
-                        hero.transform.position = tSPos.position;
-                        hero.transform.rotation = Quaternion.identity;
-                        hero.transform.localScale = Vector3.one;
-                    }
-
-                    mListMyHeroes.Add(hero);
+                    hero.transform.position = tSPos.position;
+                    hero.transform.rotation = Quaternion.identity;
+                    hero.transform.localScale = Vector3.one;
                 }
+
+
+                mListMyHeroes.Add(hero);
             }
 
             mListSortingLayer.AddRange(mListMyHeroes);
@@ -190,21 +188,21 @@ public class Battle_Control : MonoBehaviour
         Transform tTeam = transform.FindChild("Team/EnemyTeam");
         if (tTeam != null)
         {
-            //for (int i = 0; i < 1; ++i)
+            int iMonIndex = 0;
+            int iMonLv = 0;
+            GameMain.Instance().GetEncountMonsterInfo(ref iMonIndex, ref iMonLv);
+            Hero_Control hero = UtilFunc.CreateHero(tTeam, iMonIndex, iMonLv, false);
+            if (hero != null)
             {
-                Hero_Control hero = UtilFunc.CreateHero(tTeam, 2001, 1, false);
-                if (hero != null)
+                Transform tSPos = transform.FindChild("Map/RegenPos/EnemyTeam/0");
+                if (tSPos != null)
                 {
-                    Transform tSPos = transform.FindChild("Map/RegenPos/EnemyTeam/0");
-                    if (tSPos != null)
-                    {
-                        hero.transform.position = tSPos.position;
-                        hero.transform.rotation = Quaternion.identity;
-                        hero.transform.localScale = Vector3.one;
-                    }
-
-                    mListEnemyHeroes.Add(hero);
+                    hero.transform.position = tSPos.position;
+                    hero.transform.rotation = Quaternion.identity;
+                    hero.transform.localScale = Vector3.one;
                 }
+
+                mListEnemyHeroes.Add(hero);
             }
 
             mListSortingLayer.AddRange(mListEnemyHeroes);

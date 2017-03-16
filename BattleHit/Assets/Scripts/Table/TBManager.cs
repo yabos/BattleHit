@@ -47,8 +47,12 @@ public class TBManager : MonoBehaviour
             tbHero.mHP = st.GetValueAsInt(x, "HP");
             tbHero.mAtk = st.GetValueAsInt(x, "Atk");
             tbHero.mDef = st.GetValueAsInt(x, "Def");
-            int iSpeed = st.GetValueAsInt(x, "Speed");
-            tbHero.mSpeed = (float)iSpeed * 0.001f;
+            string stAttSpeed = st.GetValue(x, "AttSpeed");
+            tbHero.mAttSpeed = float.Parse(stAttSpeed);
+            string stCritical = st.GetValue(x, "Critical");
+            tbHero.mCritical = float.Parse(stCritical);
+            int iSpeed = st.GetValueAsInt(x, "BattleMoveSpeed");
+            tbHero.mBattleMoveSpeed = (float)iSpeed * 0.001f;
             int iBlowPower = st.GetValueAsInt(x, "BlowPower");
             tbHero.mBlowPower = (float)iBlowPower * 0.001f;
             int iBlowTolerance = st.GetValueAsInt(x, "BlowTolerance");
@@ -84,11 +88,19 @@ public class TBManager : MonoBehaviour
             tbMapInfo.mMapNo = st.GetValueAsInt(x, "MapNo");
             tbMapInfo.mEnableBattle = st.GetValueAsInt(x, "EnableBattleScene");
 
-            for (int i = 0; i < 5; ++i)
+            for (int i = 0; i < tbMapInfo.mArrRegenMostersPer.Length; ++i)
+            {
+                string stRegenMonPer = "RegenMonPer" + i.ToString();
+                tbMapInfo.mArrRegenMostersPer[i] = st.GetValueAsInt(x, stRegenMonPer);
+            }
+
+            for (int i = 0; i < tbMapInfo.mArrRegenMosters.Length; ++i)
             {
                 string stRegenMon = "RegenMon" + i.ToString();
                 tbMapInfo.mArrRegenMosters[i] = st.GetValueAsInt(x, stRegenMon);
             }
+
+            tbMapInfo.mMonLv = st.GetValueAsInt(x, "MonLv");
 
             int key = tbMapInfo.mMapNo;
             if (cont_MapInfo.ContainsKey(key))

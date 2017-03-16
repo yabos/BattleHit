@@ -159,7 +159,7 @@ namespace CreativeSpore.RpgMapEditor
                     if (GameMain.Instance().IsEnableBattle())
                     {
                         EnemyEncountTime += Time.deltaTime;
-                        if (EnemyEncountTime > 100f)
+                        if (EnemyEncountTime > 1f)
                         {
                             GameMain.Instance().BattleStart();                            
                             gameObject.SetActive(false);

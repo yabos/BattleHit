@@ -9,7 +9,7 @@ public class BattleUI_Control : BaseUI
     // Use this for initialization
     void Start ()
     {
-        mHeroHp = transform.FindChild("Anchor_TL/HeroHP");
+        mHeroHp = transform.FindChild("Anchor_T/HeroHP");
         if (mHeroHp == null) return;
 
         mDamage = transform.FindChild("Anchor/Damage");

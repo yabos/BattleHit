@@ -33,8 +33,10 @@ public class Hero_Control : MonoBehaviour
     int mHP = 0;
     int mMaxHP = 0;
     int mAtk = 0;
-    int mDef = 0;    
-    float mSpeed = 0;
+    int mDef = 0;
+    float mAttSpeed = 0;
+    float mCritical = 0;
+    float mBattleMoveSpeed = 0;
     float mBlowPower = 0;
     float mBlowTolerance = 0;
     string mStResPath = null;
@@ -94,10 +96,22 @@ public class Hero_Control : MonoBehaviour
         get { return mDef; }
     }
 
-    public float Speed
+    public float AttSpeed
     {
-        set { mSpeed = value; }
-        get { return mSpeed; }
+        set { mAttSpeed = value; }
+        get { return mAttSpeed; }
+    }
+
+    public float Critical
+    {
+        set { mCritical = value; }
+        get { return mCritical; }
+    }
+
+    public float BattleMoveSpeed
+    {
+        set { mBattleMoveSpeed = value; }
+        get { return mBattleMoveSpeed; }
     }
 
     public float BlowPower
@@ -322,7 +336,7 @@ public class Hero_Control : MonoBehaviour
     {
         if (!MyTeam) return;
         
-        transform.position += Vector3.right * Time.deltaTime * mSpeed * 2f;
+        transform.position += Vector3.right * Time.deltaTime * mBattleMoveSpeed * 2f;
 
         mIsMove = true;
         mActor.PlayAnimation(Actor.AnimationActor.ANI_WALK);
@@ -439,14 +453,7 @@ public class Hero_Control : MonoBehaviour
         }
         else
         {
-            if (mMyTeam)
-            {
-                mActor.SetAnimationSpeed(0.7f);
-            }
-            else
-            {
-                mActor.SetAnimationSpeed(0.5f);
-            }
+            mActor.SetAnimationSpeed(mAttSpeed);
         }
     }
 
@@ -585,7 +592,7 @@ public class Hero_Control : MonoBehaviour
         {
             Vector3 vDir = vPos - transform.position;
             vDir.Normalize();
-            transform.position += vDir * Time.deltaTime * mSpeed * 2f;
+            transform.position += vDir * Time.deltaTime * mBattleMoveSpeed * 2f;
 
             mIsMove = true;
             mActor.PlayAnimation(Actor.AnimationActor.ANI_WALK);
@@ -819,5 +826,10 @@ public class Hero_Control : MonoBehaviour
 		BattleUI_Control bcUI = UIManager.Instance().GetBattleUI() as BattleUI_Control;
         if (bcUI == null) return;
         bcUI.UpdatePosHPGauge(mHeroUid, mEf_HP);
+    }
+
+    public void CalcStat()
+    {
+        // 나중에 장비가 생기면 여기서 계산 해주자.
     }
 }
