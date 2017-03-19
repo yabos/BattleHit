@@ -14,8 +14,6 @@ namespace CreativeSpore.RpgMapEditor
         public SpriteRenderer WeaponSprite;
         public int FogSightLength = 5;
 
-		private float EnemyEncountTime = 0;
-
         /// <summary>
         /// If player is driving a vehicle, this will be that vehicle
         /// </summary>
@@ -27,6 +25,10 @@ namespace CreativeSpore.RpgMapEditor
         static PlayerController s_instance;
         void Awake()
         {
+#if UNITY_5_4 || UNITY_5_5_OR_NEWER
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+#endif
             if(s_instance == null)
             {
                 DontDestroyOnLoad(gameObject);
@@ -35,7 +37,7 @@ namespace CreativeSpore.RpgMapEditor
             else
             {
                 DestroyImmediate(gameObject);
-            }
+            }      
         }
         #endregion
 
@@ -44,8 +46,21 @@ namespace CreativeSpore.RpgMapEditor
             s_instance = null;
         }
 
+        void OnDestroy()
+        {
+#if UNITY_5_4 || UNITY_5_5_OR_NEWER
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+#endif
+        }
+
+#if UNITY_5_4 || UNITY_5_5_OR_NEWER
+        void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+        {
+            if (mode != UnityEngine.SceneManagement.LoadSceneMode.Single) return;
+#else
         void OnLevelWasLoaded()
         {
+#endif
             if (s_instance != this) // this happens if UndoDontDestroyOnLoad was called
             {
                 DestroyImmediate(gameObject);
@@ -59,7 +74,6 @@ namespace CreativeSpore.RpgMapEditor
             WeaponSprite.enabled = value;
         }
 
-		// Use this for initialization
 		protected override void Start () 
 		{
             base.Start();
@@ -88,7 +102,7 @@ namespace CreativeSpore.RpgMapEditor
 				vBulletPos = new Vector3( -0.08f, -0.02f, 0f );
 				vBulletPos += transform.position;
 				vBulletDir = Vector3.down;
-				//m_animCtrl.AnimDirection = eAnimDir.Down;
+				m_animCtrl.AnimDirection = eAnimDir.Down;
 				m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
 			}
@@ -97,7 +111,7 @@ namespace CreativeSpore.RpgMapEditor
 				vBulletPos = new Vector3( -0.10f, 0.10f, 0f );
 				vBulletPos += transform.position;
 				vBulletDir = -Vector3.right;
-                //m_animCtrl.AnimDirection = eAnimDir.Left;
+                m_animCtrl.AnimDirection = eAnimDir.Left;
 				m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
 			}
@@ -106,7 +120,7 @@ namespace CreativeSpore.RpgMapEditor
 				vBulletPos = new Vector3( 0.10f, 0.10f, 0f );
 				vBulletPos += transform.position;
 				vBulletDir = Vector3.right;
-                //m_animCtrl.AnimDirection = eAnimDir.Right;
+                m_animCtrl.AnimDirection = eAnimDir.Right;
 				m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
 			}
@@ -115,7 +129,7 @@ namespace CreativeSpore.RpgMapEditor
 				vBulletPos = new Vector3( 0.08f, 0.32f, 0f );
 				vBulletPos += transform.position;
 				vBulletDir = -Vector3.down;
-                //m_animCtrl.AnimDirection = eAnimDir.Up;
+                m_animCtrl.AnimDirection = eAnimDir.Up;
 				m_timerBlockDir = TimerBlockDirSet;
                 m_keepAttackDirTimer = keepAttackDirTimerValue;
 			}
@@ -134,12 +148,12 @@ namespace CreativeSpore.RpgMapEditor
 
         protected override void Update()
 		{
-            //eAnimDir savedAnimDir = m_animCtrl.AnimDirection;
+            eAnimDir savedAnimDir = m_animCtrl.AnimDirection;
             base.Update();
             if(m_keepAttackDirTimer > 0f)
             {
                 m_keepAttackDirTimer -= Time.deltaTime;
-                //m_animCtrl.AnimDirection = savedAnimDir;
+                m_animCtrl.AnimDirection = savedAnimDir;
             }
             m_phyChar.enabled = (Vehicle == null);
             if (Vehicle != null)
@@ -155,17 +169,6 @@ namespace CreativeSpore.RpgMapEditor
                 {
                     //m_phyChar.Dir.Normalize();
                     m_camera2DFollowBehaviour.Target = transform;
-
-                    if (GameMain.Instance().IsEnableBattle())
-                    {
-                        EnemyEncountTime += Time.deltaTime;
-                        if (EnemyEncountTime > 1f)
-                        {
-                            GameMain.Instance().BattleStart();                            
-                            gameObject.SetActive(false);
-                            EnemyEncountTime = 0;
-                        }
-                    }
                 }
                 else
                 {

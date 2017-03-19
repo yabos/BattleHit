@@ -75,6 +75,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CreativeSpore\RpgMapEditor\Samples\Scripts\DemoGUI.cs" />
+    <Compile Include="Assets\CreativeSpore\RpgMapEditor\Samples\Scripts\DemoPathFindingBehavior.cs" />
+    <Compile Include="Assets\CreativeSpore\RpgMapEditor\Scripts\RpgFramework\Behaviours\TileMovementBehaviour.cs" />
+    <Compile Include="Assets\CreativeSpore\RpgMapEditor\Scripts\RpgFramework\Controllers\PlayerTileMovementController.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />

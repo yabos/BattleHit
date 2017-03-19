@@ -111,13 +111,13 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: 0.25
+    heightScale: .25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
+  cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
@@ -131,12 +131,11 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -152,9 +151,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_1
       rect:
         serializedVersion: 2
@@ -163,9 +161,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_2
       rect:
         serializedVersion: 2
@@ -174,9 +171,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_3
       rect:
         serializedVersion: 2
@@ -185,9 +181,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_4
       rect:
         serializedVersion: 2
@@ -196,9 +191,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_5
       rect:
         serializedVersion: 2
@@ -207,9 +201,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_6
       rect:
         serializedVersion: 2
@@ -218,9 +211,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_7
       rect:
         serializedVersion: 2
@@ -229,9 +221,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_8
       rect:
         serializedVersion: 2
@@ -240,9 +231,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_9
       rect:
         serializedVersion: 2
@@ -251,9 +241,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_10
       rect:
         serializedVersion: 2
@@ -262,9 +251,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_11
       rect:
         serializedVersion: 2
@@ -273,9 +261,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_12
       rect:
         serializedVersion: 2
@@ -284,9 +271,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_13
       rect:
         serializedVersion: 2
@@ -295,9 +281,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_14
       rect:
         serializedVersion: 2
@@ -306,9 +291,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_15
       rect:
         serializedVersion: 2
@@ -317,9 +301,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_16
       rect:
         serializedVersion: 2
@@ -328,9 +311,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_17
       rect:
         serializedVersion: 2
@@ -339,9 +321,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_18
       rect:
         serializedVersion: 2
@@ -350,9 +331,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_19
       rect:
         serializedVersion: 2
@@ -361,9 +341,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_20
       rect:
         serializedVersion: 2
@@ -372,9 +351,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_21
       rect:
         serializedVersion: 2
@@ -383,9 +361,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_22
       rect:
         serializedVersion: 2
@@ -394,9 +371,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_23
       rect:
         serializedVersion: 2
@@ -405,9 +381,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_24
       rect:
         serializedVersion: 2
@@ -416,9 +391,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_25
       rect:
         serializedVersion: 2
@@ -427,9 +401,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_26
       rect:
         serializedVersion: 2
@@ -438,9 +411,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_27
       rect:
         serializedVersion: 2
@@ -449,9 +421,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_28
       rect:
         serializedVersion: 2
@@ -460,9 +431,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_29
       rect:
         serializedVersion: 2
@@ -471,9 +441,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_30
       rect:
         serializedVersion: 2
@@ -482,9 +451,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_31
       rect:
         serializedVersion: 2
@@ -493,9 +461,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_32
       rect:
         serializedVersion: 2
@@ -504,9 +471,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_33
       rect:
         serializedVersion: 2
@@ -515,9 +481,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_34
       rect:
         serializedVersion: 2
@@ -526,9 +491,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_35
       rect:
         serializedVersion: 2
@@ -537,9 +501,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_36
       rect:
         serializedVersion: 2
@@ -548,9 +511,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_37
       rect:
         serializedVersion: 2
@@ -559,9 +521,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_38
       rect:
         serializedVersion: 2
@@ -570,9 +531,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_39
       rect:
         serializedVersion: 2
@@ -581,9 +541,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_40
       rect:
         serializedVersion: 2
@@ -592,9 +551,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_41
       rect:
         serializedVersion: 2
@@ -603,9 +561,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_42
       rect:
         serializedVersion: 2
@@ -614,9 +571,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_43
       rect:
         serializedVersion: 2
@@ -625,9 +581,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_44
       rect:
         serializedVersion: 2
@@ -636,9 +591,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_45
       rect:
         serializedVersion: 2
@@ -647,9 +601,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_46
       rect:
         serializedVersion: 2
@@ -658,9 +611,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_47
       rect:
         serializedVersion: 2
@@ -669,9 +621,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_48
       rect:
         serializedVersion: 2
@@ -680,9 +631,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_49
       rect:
         serializedVersion: 2
@@ -691,9 +641,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_50
       rect:
         serializedVersion: 2
@@ -702,9 +651,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_51
       rect:
         serializedVersion: 2
@@ -713,9 +661,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_52
       rect:
         serializedVersion: 2
@@ -724,9 +671,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_53
       rect:
         serializedVersion: 2
@@ -735,9 +681,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_54
       rect:
         serializedVersion: 2
@@ -746,9 +691,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_55
       rect:
         serializedVersion: 2
@@ -757,9 +701,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_56
       rect:
         serializedVersion: 2
@@ -768,9 +711,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_57
       rect:
         serializedVersion: 2
@@ -779,9 +721,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_58
       rect:
         serializedVersion: 2
@@ -790,9 +731,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_59
       rect:
         serializedVersion: 2
@@ -801,9 +741,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_60
       rect:
         serializedVersion: 2
@@ -812,9 +751,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_61
       rect:
         serializedVersion: 2
@@ -823,9 +761,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_62
       rect:
         serializedVersion: 2
@@ -834,9 +771,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_63
       rect:
         serializedVersion: 2
@@ -845,9 +781,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_64
       rect:
         serializedVersion: 2
@@ -856,9 +791,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_65
       rect:
         serializedVersion: 2
@@ -867,9 +801,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_66
       rect:
         serializedVersion: 2
@@ -878,9 +811,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_67
       rect:
         serializedVersion: 2
@@ -889,9 +821,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_68
       rect:
         serializedVersion: 2
@@ -900,9 +831,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_69
       rect:
         serializedVersion: 2
@@ -911,9 +841,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_70
       rect:
         serializedVersion: 2
@@ -922,9 +851,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_71
       rect:
         serializedVersion: 2
@@ -933,9 +861,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_72
       rect:
         serializedVersion: 2
@@ -944,9 +871,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_73
       rect:
         serializedVersion: 2
@@ -955,9 +881,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_74
       rect:
         serializedVersion: 2
@@ -966,9 +891,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_75
       rect:
         serializedVersion: 2
@@ -977,9 +901,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_76
       rect:
         serializedVersion: 2
@@ -988,9 +911,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_77
       rect:
         serializedVersion: 2
@@ -999,9 +921,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_78
       rect:
         serializedVersion: 2
@@ -1010,9 +931,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_79
       rect:
         serializedVersion: 2
@@ -1021,9 +941,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_80
       rect:
         serializedVersion: 2
@@ -1032,9 +951,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_81
       rect:
         serializedVersion: 2
@@ -1043,9 +961,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_82
       rect:
         serializedVersion: 2
@@ -1054,9 +971,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_83
       rect:
         serializedVersion: 2
@@ -1065,9 +981,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_84
       rect:
         serializedVersion: 2
@@ -1076,9 +991,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_85
       rect:
         serializedVersion: 2
@@ -1087,9 +1001,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_86
       rect:
         serializedVersion: 2
@@ -1098,9 +1011,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_87
       rect:
         serializedVersion: 2
@@ -1109,9 +1021,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_88
       rect:
         serializedVersion: 2
@@ -1120,9 +1031,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_89
       rect:
         serializedVersion: 2
@@ -1131,9 +1041,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_90
       rect:
         serializedVersion: 2
@@ -1142,9 +1051,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_91
       rect:
         serializedVersion: 2
@@ -1153,9 +1061,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_92
       rect:
         serializedVersion: 2
@@ -1164,9 +1071,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_93
       rect:
         serializedVersion: 2
@@ -1175,9 +1081,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_94
       rect:
         serializedVersion: 2
@@ -1186,9 +1091,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: vx_chara03_e_95
       rect:
         serializedVersion: 2
@@ -1197,10 +1101,8 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

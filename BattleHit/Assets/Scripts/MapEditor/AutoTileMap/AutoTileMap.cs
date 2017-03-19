@@ -1130,7 +1130,33 @@ namespace CreativeSpore.RpgMapEditor
 		}
 
         /// <summary>
-        /// Get map collision over a tile and an offset position relative to the tile
+        /// Gets first map collision found for a given grid position
+        /// </summary>
+        /// <param name="tile_x">Grid position X</param>
+        /// <param name="tile_y">Grid position Y</param>
+        /// <returns></returns>
+        public eTileCollisionType GetCellAutotileCollision(int tile_x, int tile_y)
+        {
+            for (int iLayer = MapLayers.Count - 1; iLayer >= 0; --iLayer)
+            {
+                if (MapLayers[iLayer].LayerType == eLayerType.Ground)
+                {
+                    AutoTile autoTile = GetAutoTile(tile_x, tile_y, iLayer);
+                    if (autoTile != null && autoTile.Id >= 0 && autoTile.TilePartsIdx != null)
+                    {
+                        eTileCollisionType tileCollType = Tileset.AutotileCollType[autoTile.Id];
+                        if (tileCollType != eTileCollisionType.EMPTY && tileCollType != eTileCollisionType.OVERLAY) //remove Overlay check???
+                        {
+                            return tileCollType;
+                        }
+                    }
+                }
+            }
+            return eTileCollisionType.PASSABLE;
+        }
+
+        /// <summary>
+        /// Gets map collision over a tile and an offset position relative to the tile
         /// </summary>
         /// <param name="tile_x">X tile coordinate of the map</param>
         /// <param name="tile_y">Y tile coordinate of the map</param>
@@ -1165,7 +1191,7 @@ namespace CreativeSpore.RpgMapEditor
 				{
 					// now check inner collision ( half left for tile AC and half right for tiles BD )
 					// AX|BX|A1|B1	A: 0
-					// AX|BX|C1|D1	B: 1
+					// CX|DX|C1|D1	B: 1
 					// A2|B4|A4|B2	C: 2
 					// C5|D3|C3|D5	D: 3
 					// A5|B3|A3|B5
@@ -1177,7 +1203,17 @@ namespace CreativeSpore.RpgMapEditor
 					{
 						return eTileCollisionType.PASSABLE;
 					}
+                    /* test: removing top part of fence collider
+                    else if (tilePartType == eTilePartType.EXT_CORNER && (tilePartIdx == 0 || tilePartIdx == 1) && (vTilePartOffset.y < Tileset.TilePartHeight))
+                    {
+                        return eTileCollisionType.PASSABLE;
+                    }*/
 				}
+                /* test: removing top part of fence collider
+                else if ((tilePartIdx == 0 || tilePartIdx == 1) && (vTilePartOffset.y < Tileset.TilePartHeight))
+                {                   
+                    return eTileCollisionType.PASSABLE;
+                }*/
 			}
 			else if( collType == eTileCollisionType.WALL )
 			{

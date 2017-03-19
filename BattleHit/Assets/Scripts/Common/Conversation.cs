@@ -62,7 +62,7 @@ public class Conversation : MonoBehaviour
             m_LabelText.text = m_ListConver[m_iCurConverStep];
             ++m_iCurConverStep;
             m_bConverIng = true;
-            m_Player.PhyCtrl.IsStop = true;
+            //m_Player.PhyCtrl.IsStop = true;
             if (m_iCurConverStep == m_ListConver.Count)
             {
                 m_SpriteContinue.gameObject.SetActive(false);
@@ -110,7 +110,7 @@ public class Conversation : MonoBehaviour
 
         if (m_Player != null && m_Player.PhyCtrl != null)
         {
-            m_Player.PhyCtrl.IsStop = false;
+            //m_Player.PhyCtrl.IsStop = false;
         }
         m_bConverIng = false;
         m_iCurConverStep = 1;

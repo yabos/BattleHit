@@ -56,6 +56,11 @@ namespace CreativeSpore.RpgMapEditor
             DoCollision(other.contacts[0].normal);
         }
 
+        void OnCollisionEnter2D(Collision2D other)
+        {
+            DoCollision(other.contacts[0].normal);
+        }
+
         Vector2 m_velocity;
         IEnumerator DoLogic()
         {

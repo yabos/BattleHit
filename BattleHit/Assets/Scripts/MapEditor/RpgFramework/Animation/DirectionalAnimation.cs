@@ -6,6 +6,7 @@ namespace CreativeSpore.RpgMapEditor
 {
     //TODO: add AddComponentMenu to the other scripts
     [AddComponentMenu("RpgMapEditor/Animation/DirectionalAnimation", 10)]
+    [DisallowMultipleComponent]
     public class DirectionalAnimation : MonoBehaviour 
     {
         [System.Flags]
@@ -16,6 +17,9 @@ namespace CreativeSpore.RpgMapEditor
             PingPong,
             PingPong_Reverse
         }
+
+        public delegate void OnAnimationLoopOverDelegate(DirectionalAnimation source);
+        public OnAnimationLoopOverDelegate OnAnimationLoopOver;
 
         public SpriteRenderer TargetSpriteRenderer;
         public DirectionalAnimationController DirectionalAnimController { get { return m_dirAnimCtrl; } set { m_dirAnimCtrl = value; } }
@@ -97,6 +101,7 @@ namespace CreativeSpore.RpgMapEditor
                     ++m_internalFrame; m_internalFrame %= anim.FramesPerDir;
                     if (m_internalFrame == 0)
                     {
+                        if (OnAnimationLoopOver != null) OnAnimationLoopOver(this);
                         m_isPingPongReverse = !m_isPingPongReverse;
                     }
                 }
@@ -113,6 +118,15 @@ namespace CreativeSpore.RpgMapEditor
         public Sprite GetCurrentSprite(eAnimDir dir)
         {
             return m_dirAnimCtrl.GetAnim(m_animIdx).GetAnimFrame(dir, CurrentFrame);
+        }
+
+        public void SetAnim(string name)
+        {
+            int animIdx = m_dirAnimCtrl.GetAnimList().FindIndex(x => x.name == name);
+            if (animIdx >= 0)
+                m_animIdx = animIdx;
+            else
+                Debug.LogError("Animation " + name + " not found!");
         }
 
         public void SetAnimDirection(Vector2 vDir)

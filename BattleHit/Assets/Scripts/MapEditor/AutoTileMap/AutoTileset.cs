@@ -312,7 +312,8 @@ namespace CreativeSpore.RpgMapEditor
 
             if (AutotileCollType == null || tileNb != AutotileCollType.Length)
             {
-                AutotileCollType = new eTileCollisionType[tileNb];
+                if (AutotileCollType == null) AutotileCollType = new eTileCollisionType[tileNb];
+                else System.Array.Resize(ref AutotileCollType, tileNb);
             }
 
 			// get the mapped tileIdx ( for animated tile supporting. Animated tiles are considered as one, skipping the other 2 frames )
