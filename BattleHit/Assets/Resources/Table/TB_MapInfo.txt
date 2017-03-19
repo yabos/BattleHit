@@ -1,3 +1,3 @@
 ﻿MapNo,EnableBattleScene,RegenMonPer0,RegenMonPer1,RegenMonPer2,RegenMon0,RegenMon1,RegenMon2,MonLv
-1,0,30,30,40,1002,1003,1004,1
+1,1,30,30,40,1002,1003,1004,1
 2,1,30,30,40,1002,1003,1004,5

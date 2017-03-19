@@ -145,6 +145,7 @@ namespace CreativeSpore.RpgMapEditor
 
         private int m_lastTileIdx = -1;
         private int m_lastFogSightLength = 0;
+        private float EnemyEncountTime = 0;
 
         protected override void Update()
 		{
@@ -169,6 +170,17 @@ namespace CreativeSpore.RpgMapEditor
                 {
                     //m_phyChar.Dir.Normalize();
                     m_camera2DFollowBehaviour.Target = transform;
+
+                    if (GameMain.Instance().IsEnableBattle())
+                    {
+                        EnemyEncountTime += Time.deltaTime;
+                        if (EnemyEncountTime > 3f)
+                        {
+                            GameMain.Instance().BattleStart();
+                            gameObject.SetActive(false);
+                            EnemyEncountTime = 0;
+                        }
+                    }
                 }
                 else
                 {

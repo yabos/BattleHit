@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.CrossPlatformInput;
 
 namespace CreativeSpore.RpgMapEditor
 {
@@ -37,8 +38,10 @@ namespace CreativeSpore.RpgMapEditor
 
         protected virtual void Update()
         {
-            float fAxisX = Input.GetAxis("Horizontal");
-            float fAxisY = Input.GetAxis("Vertical");
+            //float fAxisX = Input.GetAxis("Horizontal");
+            //float fAxisY = Input.GetAxis("Vertical");
+            float fAxisX = CrossPlatformInputManager.GetAxis("Horizontal");
+            float fAxisY = CrossPlatformInputManager.GetAxis("Vertical");
             UpdateMovement(fAxisX, fAxisY);
         }
 
