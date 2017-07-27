@@ -9,19 +9,19 @@ public class BattleUI_Control : BaseUI
     // Use this for initialization
     void Start ()
     {
-        mHeroHp = transform.FindChild("Anchor_T/HeroHP");
+        mHeroHp = transform.FindChild("Anchor_B/HeroHP");
         if (mHeroHp == null) return;
 
         mDamage = transform.FindChild("Anchor/Damage");
         if (mDamage == null) return;
     }
 	
-    public void CreateHeroHp(System.Guid uid, bool bMyTeam)
+    public void CreateHeroHp(System.Guid uid,int iHP = 0, int iMaxHP = 0)
     {
-        StartCoroutine(CreateHp(uid, bMyTeam));
+        StartCoroutine(CreateHp(uid, iHP, iMaxHP));
     }
 
-    IEnumerator CreateHp(System.Guid uid, bool bMyTeam)
+    IEnumerator CreateHp(System.Guid uid, int iHP = 0, int iMaxHP = 0)
     {
         yield return new WaitForEndOfFrame();
 
@@ -36,31 +36,15 @@ public class BattleUI_Control : BaseUI
 
                 goHP.transform.localPosition = Vector3.zero;
                 goHP.transform.localRotation = Quaternion.identity;
-                goHP.transform.localScale = Vector3.one;
+                goHP.transform.localScale = Vector3.one;               
 
-                Transform tSlider = goHP.transform.FindChild("SpriteSlider");
-                if (tSlider != null)
-                {
-                    UISprite sprite = tSlider.GetComponent<UISprite>();
-                    if (sprite != null)
-                    {
-                        if (bMyTeam)
-                        {
-                            sprite.spriteName = "gauge_green";
-                        }
-                        else
-                        {
-                            sprite.spriteName = "gauge_red";
-                        }
-                    }
-                }
-
+                UpdateHPGauge(uid, iHP, iMaxHP);
                 goHP.SetActive(true);
             }
         }
     }
 
-    public void UpdateHPGauge(System.Guid uid, float fFillAmountHp)
+    public void UpdateHPGauge(System.Guid uid, int iHP, int iMaxHP)
     {
         if (mHeroHp == null) return;
 
@@ -75,7 +59,14 @@ public class BattleUI_Control : BaseUI
                 if (tSlider == null) continue;
                 UISprite sprite = tSlider.GetComponent<UISprite>();
                 if (sprite == null) continue;
-                sprite.fillAmount = fFillAmountHp;
+                float amount = (float)iHP / (float)iMaxHP;
+                sprite.fillAmount = amount;
+
+                Transform tHp = tChild.FindChild("LabelHP");
+                if (tHp == null) continue;
+                UILabel label = tHp.GetComponent<UILabel>();
+                if (label == null) continue;
+                label.text = iHP.ToString() + "/" + iMaxHP.ToString();
             }
         }
     }

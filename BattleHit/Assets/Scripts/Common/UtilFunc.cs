@@ -56,7 +56,7 @@ public class UtilFunc
                 BattleUI_Control bcUI = UIManager.Instance().GetBattleUI() as BattleUI_Control;
                 if (bcUI != null)
                 {
-                    bcUI.CreateHeroHp(uid, bMyTeam);
+                    bcUI.CreateHeroHp(uid, hero.HP, hero.MaxHP);
                 }
             }
         }

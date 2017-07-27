@@ -718,9 +718,8 @@ public class Hero_Control : MonoBehaviour
         HP -= atthero.Atk;
 		BattleUI_Control bcUI = UIManager.Instance().GetBattleUI() as BattleUI_Control;
         if (bcUI == null) return false;
-
-        float amount =  (float)HP / (float)MaxHP;
-        bcUI.UpdateHPGauge(mHeroUid, amount);
+        
+        bcUI.UpdateHPGauge(mHeroUid, HP, MaxHP);
 
         Vector3 vPos = Camera.main.WorldToScreenPoint(mEf_HP.position);
         Vector3 vPos1 = UIManager.Instance().ScreenToWorldPoint(vPos);
